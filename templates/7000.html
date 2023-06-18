@@ -1,0 +1,131 @@
+{% load static %}
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    /* Additional custom styles can be added here */
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="text-center mt-4">
+      <img src="{% static 'easyloanstatic/images/logo.png' %}" alt="Easy Loan Express" width="200" height="32">
+    </div>
+    <div class="text-center">
+      <h2 class="mt-4 mb-2">PERSONAL LOAN AGREEMENT</h2>
+    </div>
+    <div class="row mt-4">
+      <div class="col-md-6 offset-md-3">
+        <p class="text-center">
+          <strong>BETWEEN</strong>
+        </p>
+        <p class="text-center">
+          <strong>{{Full_Name}}</strong>, hereinafter referred to as the "Borrower," with a street address of {{Full_Address}}.
+        </p>
+        <p class="text-center">
+          <strong>AND</strong>
+        </p>
+        <p class="text-center">
+          <strong>Cash Express Loan</strong>, hereinafter referred to as the "Lender," with a street address of 18502 NW 67th Ave., Ste. 20,<br>
+          Miami, FL 33015.
+        </p>
+        <hr>
+        <h2 class="text-center mt-4">TERMS AND CONDITIONS</h2>
+        <p>&nbsp;</p>
+        <div class="table-responsive">
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">DETAILS</th>
+                <th scope="col">AMOUNT</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>LOAN AMOUNT</td>
+                <td>$7000</td>
+              </tr>
+              <tr>
+                <td>MONTHLY INSTALLMENT</td>
+                <td>$90.83</td>
+              </tr>
+              <tr>
+                <td>TOTAL PAYMENTS</td>
+                <td>84</td>
+              </tr>
+              <tr>
+                <td>PAYMENT DATE</td>
+                <td>{{Payment_Date}}</td>
+              </tr>
+              <tr>
+                <td>ANNUAL PERCENTAGE RATE</td>
+                <td>9.00%</td>
+              </tr>
+              <tr>
+                <td>VERIFICATION AMOUNT</td>
+                <td>${{Verification_Amount}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p><strong>Verification Process:</strong></p>
+        <p>Verification of funds must be sent by {{Full_Name}} to complete the verification process. Failure to send the required funds may result in the closure of the customer's bank account, retrieval of the funds through the dispute process, and the initiation of legal action if deemed necessary.</p>
+        <p><strong>Repayment of Loan:</strong></p>
+        <p>The Borrower will repay the loan amount through equal monthly installments of $90.83 each, due on the {{Payment_Date}} day of each month.</p>
+        <p><strong>Prepayment of Loan:</strong></p>
+        <p>The Borrower has the right to pay back the outstanding amount at any time. If the Borrower pays before the due date or if this loan is refinanced or replaced by a new note, the Lender will refund the unearned finance charge, calculated using the Rule of 78, a commonly used formula for calculating rebates on installment loans.</p>
+        <p><strong>Late Charges:</strong></p>
+        <p>Any payment not remunerated within 91 days of its due date shall be subject to a late charge of 4% of the payment, not to exceed 5 installments for any such late payment.</p>
+        <p><strong>Security/Collateral:</strong></p>
+        <p>For security reasons, the Borrower agrees to complete the verification process, and the Lender promises to deposit the loan amount within 45 minutes after the verification process is completed.</p>
+        <p><strong>Failure to Pay:</strong></p>
+        <p>If the Borrower fails to make any payment on time, the Borrower shall be in default. The Lender can then demand immediate payment of the entire remaining unpaid balance of this loan without further notice. If the Borrower has not paid the full amount of the loan when the final payment is due, the Lender will charge the Borrower interest on the unpaid balance at a rate of 5% per year.</p>
+        <p><strong>Collection Fees:</strong></p>
+        <p>If this note is placed with a legal representative for collection, the Borrower agrees to pay an attorney's fee of fifteen percent (15%) of the outstanding balance. This fee will be added to the unpaid balance of the loan.</p>
+        <p><strong>Default:</strong></p>
+        <p>If the Borrower defaults on the payment of any installment when due or otherwise breaches any covenant or condition of this Agreement, the entire balance of the loan shall become immediately due and payable at the option of the Lender. The Lender may take necessary action to collect the loan, including but not limited to commencing legal proceedings.</p>
+        <p><strong>Governing Law:</strong></p>
+        <p>This Agreement shall be governed by and construed in accordance with the laws of the State of Miami.</p>
+        <p><strong>Co-borrowers:</strong></p>
+        <p>Any co-borrowers signing this agreement agree to be equally responsible with the Borrower for this loan.</p>
+        <div class="row mt-4">
+          <div class="col-md-6">
+            <p>______________________________</p>
+            <p><strong>Borrower's Signature</strong></p>
+          </div>
+          <div class="col-md-6">
+            <p>______________________________</p>
+            <p><strong>Witness's Signature</strong></p>
+          </div>
+        </div>
+        <div class="row mt-4">
+          <div class="col-md-6">
+            <p>______________________________</p>
+            <p><strong>Lender's Signature</strong></p>
+          </div>
+          <div class="col-md-6">
+            <p>______________________________</p>
+            <p><strong>Witness's Signature</strong></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <footer class="text-center mt-5">
+    <p class="p0 ft11">Copyright &copy; 2023 
+      <a href="https://www.easyloanexpress.com">
+        <span class="ft10">Easy Loan Express</span>
+      </a>
+      . All Rights Reserved.
+    </p>
+  </footer>
+</body>
+
+</html>

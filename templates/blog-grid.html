@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+ {% load static %}
+<head>
+  {% load static %}
+  {% include 'easyloanexpress/header.html' %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Easy Loan Express - Services</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    /* Custom styles */
+    body {
+      padding-top: 50px;
+      background-color: #f8f9fa;
+    }
+
+    h1 {
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .service-section {
+      margin-bottom: 50px;
+    }
+
+    .service-box {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 20px;
+      background-color: #fff;
+    }
+
+    .service-title {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #333;
+      text-decoration: underline;
+    }
+
+    .service-description {
+      font-size: 16px;
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    .apply-button {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1 style="margin: 50px; color: #333;">Our Services</h1>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="service-section">
+          <div class="service-box">
+            <h2 class="service-title">Payday Loans</h2>
+            <p class="service-description">Get quick, short-term loans to cover unexpected expenses until your next payday.</p>
+                        <a href="{{livechatlink}}" class="btn btn-primary apply-button">Apply Now</a>
+
+          </div>
+        </div>
+
+        <div class="service-section">
+          <div class="service-box">
+            <h2 class="service-title">Personal Loans</h2>
+            <p class="service-description">Access flexible borrowing options for various personal needs, such as debt consolidation, home improvements, medical expenses, or vacation funds.</p>
+                        <a href="{{livechatlink}}" class="btn btn-primary apply-button">Apply Now</a>
+
+          </div>
+        </div>
+
+        <div class="service-section">
+          <div class="service-box">
+            <h2 class="service-title">Installment Loans</h2>
+            <p class="service-description">Borrow a specific amount and repay it over a fixed period in regular installments, making it easier to manage your budget.</p>
+                        <a href="{{livechatlink}}" class="btn btn-primary apply-button">Apply Now</a>
+
+          </div>
+        </div>
+
+        <div class="service-section">
+          <div class="service-box">
+            <h2 class="service-title">Home Loans</h2>
+            <p class="service-description">Achieve your dream of homeownership with our competitive home loan options.</p>
+                        <a href="{{livechatlink}}" class="btn btn-primary apply-button">Apply Now</a>
+
+          </div>
+        </div>
+
+        <div class="service-section">
+          <div class="service-box">
+            <h2 class="service-title">Cash Loan</h2>
+            <p class="service-description">Get cash at our store location, providing you with immediate access to funds.</p>
+                        <a href="{{livechatlink}}" class="btn btn-primary apply-button">Apply Now</a>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="service-section">
+          <div class="service-box">
+            <h2 class="service-title">Auto Loans</h2>
+            <p class="service-description">Secure financing for your new or used car purchase, with flexible repayment terms and competitive interest rates.</p>
+                        <a href="{{livechatlink}}" class="btn btn-primary apply-button">Apply Now</a>
+
+          </div>
+        </div>
+
+        <div class="service-section">
+          <div class="service-box">
+            <h2 class="service-title">Business Loans</h2>
+            <p class="service-description">Fuel your business growth with our tailored financing solutions, including startup funding, working capital loans, and expansion capital.</p>
+                        <a href="{{livechatlink}}" class="btn btn-primary apply-button">Apply Now</a>
+
+          </div>
+        </div>
+
+        <div class="service-section">
+          <div class="service-box">
+            <h2 class="service-title">Debt Consolidation Loans</h2>
+            <p class="service-description">Simplify your finances by combining multiple debts into a single loan, with lower interest rates and manageable monthly payments.</p>
+                        <a href="{{livechatlink}}" class="btn btn-primary apply-button">Apply Now</a>
+
+          </div>
+        </div>
+
+        <div class="service-section">
+          <div class="service-box">
+            <h2 class="service-title">Emergency Loans</h2>
+            <p class="service-description">Access funds quickly during unexpected financial emergencies, ensuring you have the necessary funds to cover urgent expenses.</p>
+                        <a href="{{livechatlink}}" class="btn btn-primary apply-button">Apply Now</a>
+
+          </div>
+        </div>
+
+        <div class="service-section">
+          <div class="service-box">
+            <h2 class="service-title">Student Loans</h2>
+            <p class="service-description">Invest in your education with our student loan options, helping you pursue your academic goals without financial worries.</p>
+            <a href="{{livechatlink}}" class="btn btn-primary apply-button">Apply Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
+</body>
+
+{% include 'easyloanexpress/footer.html' %}
+
+</html>

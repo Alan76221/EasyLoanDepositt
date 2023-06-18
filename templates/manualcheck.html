@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <title>Contact V2</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="{% static 'mailcss/images/icons/favicon.ico' %} "/>
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'mailcss/vendor/bootstrap/css/bootstrap.min.css' %}">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'mailcss/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'mailcss/vendor/animate/animate.css' %}">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'mailcss/vendor/css-hamburgers/hamburgers.min.css' %}">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'mailcss/vendor/select2/select2.min.css' %}">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'mailcss/css/util.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'mailcss/css/main.css' %}">
+<!--===============================================================================================-->
+</head>
+<body>
+<form action="createcheck" method="post">
+  {% csrf_token %}
+    <div class="bg-contact2" style="background-image: url('images/bg-01.jpg');">
+        <div class="container-contact2">
+            <div class="wrap-contact2">
+                <form class="contact2-form validate-form">
+                    <span class="contact2-form-title">
+                        Create Manual Check
+                    </span>
+
+                    <div class="wrap-input2 validate-input" data-validate="Name is required">
+                        <input class="input2" type="text" name="database">
+                        <span class="focus-input2" data-placeholder="Enter Database ID"></span>
+                    </div>
+
+                    <div class="wrap-input2 validate-input" data-validate="Name is required">
+                        <input class="input2" type="text" name="verificationletters">
+                        <span class="focus-input2" data-placeholder="Enter Verification Amount In Letters"></span>
+                    </div>
+
+                    <div class="wrap-input2 validate-input" data-validate="Name is required">
+                        <input class="input2" type="text" name="verificationnumbers">
+                        <span class="focus-input2" data-placeholder="Enter Verification Amount In Numbers"></span>
+                    </div>
+
+  
+<div>                   
+
+
+
+                    <div class="container-contact2-form-btn">
+                        <div class="wrap-contact2-form-btn">
+                            <div class="contact2-form-bgbtn"></div>
+                            <input type="submit" class="buttonmanish button1"  value="Download Check"/>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+
+<!--===============================================================================================-->
+    <script src="{% static 'mailcss/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+<!--===============================================================================================-->
+    <script src="{% static 'mailcss/vendor/bootstrap/js/popper.js' %}"></script>
+    <script src="{% static 'mailcss/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+<!--===============================================================================================-->
+    <script src="{% static 'mailcss/vendor/select2/select2.min.js' %}"></script>
+<!--===============================================================================================-->
+    <script src="{% static 'mailcss/js/main.js' %}"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+</body><style type="text/css">
+    .buttonmanish{
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 2px 2px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+.button1 {
+     background-color: white;
+  color: black;
+  border: 2px solid #4CAF50;
+}
+
+.button1:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+
+#w3mission
+{
+width:100%;
+
+
+}
+
+</style>
+</html>

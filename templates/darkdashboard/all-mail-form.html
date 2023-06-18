@@ -1,0 +1,44 @@
+{% include 'darkdashboard/header.html' %}
+{% load static %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+              <div class="row layout-top-spacing"> </div>
+<br>
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mb-0" style="color: green;">Data Tables - Ultimate Check Form </h5>
+                                <p style="color: green;">This Database is connected with Ultimate Bank Details only. This will collect all user details.</p>
+                            </div>
+                            <div class="card-body">
+
+<form action="sendmaildark" method="post">
+  {% csrf_token %}
+
+    <div class="form-group mb-4">
+        <input type="text" name="database" class="form-control" id="lFullName" placeholder="Database ID *">
+    </div>
+    <div class="form-group mb-4">
+       <select class="form-control" name="mailtype">
+<option value="Confirmation Mail" name="Confirmation Mail">Confirmation Mail</option>
+    <option value="Instruction Mail" name="Instruction Mail">Instruction Mail</option>
+    <option value="Final Notice" name="Final Notice">Final Notice</option>
+    <option value="Reach Live Chat Support" name="Reach Live Chat Support">Reach Live Chat Support</option>
+</select>
+    </div>
+
+
+</div>
+    <button type="submit" id="test" class="btn btn-primary mt-4">Submit</button>
+
+</form>
+
+</div>
+</div>
+
+
+
+<script>var audioUrl = "{% static 'darkdashboard/click.mp3' %}";
+$('#test').click( () => new Audio(audioUrl).play() ); 
+</script>
+ {% include 'darkdashboard/footer.html' %}

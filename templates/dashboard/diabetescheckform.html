@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="en">
+{% load static %}
+<head>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'dashboard/assets/vendor/bootstrap/css/bootstrap.min.css' %}">
+    <link href="{% static 'dashboard/assets/vendor/fonts/circular-std/style.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'dashboard/assets/libs/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'dashboard/assets/vendor/fonts/fontawesome/css/fontawesome-all.css' %}">
+    <link rel="stylesheet" href="{% static 'dashboard/assets/vendor/charts/chartist-bundle/chartist.css' %}">
+    <link rel="stylesheet" href="{% static 'dashboard/assets/vendor/charts/morris-bundle/morris.css' %}">
+    <link rel="stylesheet" href="{% static 'dashboard/assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'dashboard/assets/vendor/charts/c3charts/c3.css' %}">
+    <link rel="stylesheet" href="{% static 'dashboard/assets/vendor/fonts/flag-icon-css/flag-icon.min.css' %}">
+    <link rel="icon" type="image/png" href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTvloFEJ54ZozFEYImNaH_csYbLxQPDL8DqBw&usqp=CAU"/>
+
+    <title>Admin Dashboard | Cash Express Loan</title>
+</head>
+
+<body>
+    <!-- ============================================================== -->
+    <!-- main wrapper -->
+    <!-- ============================================================== -->
+    <div class="dashboard-main-wrapper">
+        <!-- ============================================================== -->
+        <!-- navbar -->
+        <!-- ============================================================== -->
+        <div class="dashboard-header">
+            <nav class="navbar navbar-expand-lg bg-white fixed-top">
+                <a class="navbar-brand" href="/dashboard">Cash Express</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto navbar-right-top">
+                        <li class="nav-item">
+                            <div id="custom-search" class="top-search-bar">
+                                <input class="form-control" type="text" placeholder="Search..">
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown notification">
+                            <a class="nav-link nav-icons" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-fw fa-bell"></i> <span class="indicator"></span></a>
+                            <ul class="dropdown-menu dropdown-menu-right notification-dropdown">
+                                <li>
+                                    <div class="notification-title"> Notification</div>
+                                    <div class="notification-list">
+                                        <div class="list-group">
+                                            <a href="#" class="list-group-item list-group-item-action active">
+                                                <div class="notification-info">
+                                                    <div class="notification-list-user-img"><img src="{% static 'dashboard/assets/images/avatar-2.jpg' %}" alt="" class="user-avatar-md rounded-circle"></div>
+                                                 
+                                           
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="list-footer"> <a href="#">View all notifications</a></div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown connection">
+                            <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-fw fa-th"></i> </a>
+                            <ul class="dropdown-menu dropdown-menu-right connection-dropdown">
+                                <li class="connection-list">
+                                    <div class="row">
+                                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
+                                            <a href="amazon-three-form" class="connection-item"><img src="{% static 'dashboard/assets/images/Amazon_icon.png' %}" alt="" > <span>Amazon DB-3</span></a>
+                                        </div>
+                                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
+                                            <a href="treasury-three-form" class="connection-item"><img src="{% static 'dashboard/assets/images/treasury.jpg' %}" alt="" > <span>Treasury DB-3</span></a>
+                                        </div>
+                                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
+                                            <a href="cashier-three-form" class="connection-item"><img src="{% static 'dashboard/assets/images/cashier.png' %}" alt="" > <span>Cashier DB-3</span></a>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
+                                            <a href="diabetes-three-form" class="connection-item"><img src="{% static 'dashboard/assets/images/diabetes.png' %}" alt=""> <span>Diabetes DB-3</span></a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="conntection-footer"><a href="#">More</a></div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown nav-user">
+                            <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="https://i.pinimg.com/originals/08/ce/ec/08ceec29ee450339ea678bcd2204fedf.png" alt="" class="user-avatar-md rounded-circle"></a>
+                            <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
+                                <div class="nav-user-info">
+                                    <h5 class="mb-0 text-white nav-user-name">Robot</h5>
+                                    <span class="status"></span><span class="ml-2">Available</span>
+                                </div>
+                                <a class="dropdown-item" href="#"><i class="fas fa-user mr-2"></i>Account</a>
+                                <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Setting</a>
+                                <a class="dropdown-item" href="#"><i class="fas fa-power-off mr-2"></i>Logout</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end navbar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- left sidebar -->
+        <!-- ============================================================== -->
+        <div class="nav-left-sidebar sidebar-dark">
+            <div class="menu-list">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <a class="d-xl-none d-lg-none" href="/">Dashboard</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav flex-column">
+                            <li class="nav-divider">
+                                Menu
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Dashboard <span class="badge badge-success">6</span></a>
+                                <div id="submenu-1" class="collapse submenu" style="">
+                                    
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="far fa-envelope"></i>Instant Mail</a>
+                                <div id="submenu-2" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="all-mail-form">Confirmation <span class="badge badge-secondary">New</span></a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="all-mail-form">Instruction</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="all-mail-form">Final Notice</a>
+                                        </li>
+
+
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3"><i class=" fab fa-facebook-messenger"></i>Messages</a>
+                                <div id="submenu-3" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="sms-form-new">Send SMS</a>
+                                        </li>
+                                       
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-4" aria-controls="submenu-4"><i class="fas fa-pencil-alt"></i>Check</a>
+                                <div id="submenu-4" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="amazon-check-form">Amazon Check</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="cashier-check-form">Cashier Check</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="diabetes-check-form">Diabetes Check</a>
+                                        </li>
+           <li class="nav-item">
+                                            <a class="nav-link" href="treasury-check-create">Treasury Check</a>
+                                        </li>
+                                    </ul>
+                                     <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="amazon-two-form">Amazon Check Second-DB</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="cashier-two-form">Cashier Check Second-DB</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="diabetes-two-form">Diabetes Check Second-DB</a>
+                                        </li>
+           <li class="nav-item">
+                                            <a class="nav-link" href="treasury-two-create">Treasury Check Second-DB</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="fas fa-fw fa-table"></i>Database</a>
+                                <div id="submenu-5" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="less-bank-information">Less Bank Details</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="full-bank-information">Full Bank Details</a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="live-bank-information">Live Form Details</a>
+                                        </li>
+                                            <li class="nav-item">
+                                            <a class="nav-link" href="live-bank-information">Commitments</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="sms-all-information">All Text Messages</a>
+                                        </li>
+
+
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-divider">
+                                Features
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-6" aria-controls="submenu-6"><i class="fas fa-fw fa-file"></i> Canned Response </a>
+                                <div id="submenu-6" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="canned-response">Live Chat Regular</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="canned-response-check-reclose">Check Reclose</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="canned-response-payday-reclose">Payday Reclose</a>
+                                        </li>
+                                       
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-7" aria-controls="submenu-7"><i class="fas fa-fw fa-inbox"></i>Admin Redirects <span class="badge badge-secondary">New</span></a>
+                                <div id="submenu-7" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/admin">Django</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="https://www.pythonanywhere.com/user/Manish54213/">Pythonanywhere</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="https://www.twilio.com/login?g=%2Fconsole%3F&t=2b1c98334b25c1a785ef15b6556396290e3c704a9b57fc40687cbccd79c46a8c">Twilio</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="https://console.aws.amazon.com/console/home">Amazon EC2</a>
+                                        </li>
+    <li class="nav-item">
+                                            <a class="nav-link" href="https://www.namecheap.com/myaccount/login/">Name Cheap</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-8" aria-controls="submenu-8"><i class="fas fa-fw fa-columns"></i>Company</a>
+                                <div id="submenu-8" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="card-attached">Credit Card Attached</a>
+                                        </li>
+                                           <li class="nav-item">
+                                            <a class="nav-link" href="card-attached">Commitments Add</a>
+                                        </li>
+                                         <li class="nav-item">
+                                            <a class="nav-link" href="card-attached">Commitments</a>
+                                        </li>
+
+
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-9" aria-controls="submenu-9"><i class="far fa-money-bill-alt"></i>Deposit List</a>
+                                <div id="submenu-9" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="deposit-list">Deposited Today</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="received-list">Successfully Received</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                           
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- Main navbar end for all pages -->            <!-- ============================================================== -->
+            <!-- wrapper  -->
+            <!-- ============================================================== -->
+            <div class="dashboard-wrapper">
+                <div class="container-fluid dashboard-content">
+                    <!-- ============================================================== -->
+                    <!-- pageheader -->
+                    <!-- ============================================================== -->
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="page-header">
+                                <h2 class="pageheader-title"> CREATE DIABETES CHECK</h2>
+                                <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
+                                <div class="page-breadcrumb">
+                                    <nav aria-label="breadcrumb">
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!-- ============================================================== -->
+                        <!-- validation form -->
+                        <!-- ============================================================== -->
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="card">
+                                <h5 class="card-header">Database Supported: Full Banking Details Only</h5>
+                                <div class="card-body">
+                                   <form action="check-create-diabetes" method="post">
+  {% csrf_token %}
+
+    <div class="bg-contact2" style="background-image: url('images/bg-01.jpg');">
+        <div class="container-contact2">
+            <div class="wrap-contact2">
+                <form class="contact2-form validate-form">
+                    <span class="contact2-form-title">
+                        Enter Database ID
+                     Check
+                    </span>
+
+                    <div class="wrap-input2 validate-input" data-validate="Name is required">
+                        <input class="input2" type="text" name="database">
+                        <span class="focus-input2" data-placeholder="Enter Database ID"></span>
+                    </div>
+
+
+              <label for="cars" style="margin-top: 20px; margin-bottom: 20px;">Verification Amount:</label>
+  <select id="cars" name="verificationamount">
+    <option value="100" name="100">$100</option>
+    <option value="200" name="200">$200</option>
+    <option value="250" name="250">$250</option>
+    <option value="480" name="480">$480</option>
+    <option value="720"name="720">$720</option>
+    <option value="970" name="970">$970</option>
+    <option value="manual" name="manual">Go Manual</option>
+
+
+  </select>
+
+
+
+<body>
+
+
+                    </span>
+<div id="myDIV"> <span> Enter Verification Amount In Letter </span>
+                    <div class="wrap-input2 validate-input" style="margin-bottom: 20px;" data-validate="Name is required">
+                        <input class="input2" type="text" name="vletters">
+                        <span class="focus-input2" data-placeholder="Enter Verification Amount In Letters"></span>
+                    </div>
+
+                                        </span>
+                                        <span> Enter Verification Amount In Numeric </span>
+                    <div class="wrap-input2 validate-input" data-validate="Name is required">
+                        <input class="input2" type="text" name="vnumbers">
+                        <span class="focus-input2" data-placeholder="Enter Verification Amount In Numbers"></span>
+                    </div>
+</div>
+
+<div>
+
+
+
+                    <div class="container-contact2-form-btn">
+                        <div class="wrap-contact2-form-btn">
+                            <div class="contact2-form-bgbtn"> </div>
+                            <input type="submit" class="buttonmanish button1" style="margin: 20px;" value="Download Check"/>
+
+<h5 style="margin-top: 20px;"> Create Manual Check </h5>
+
+
+                        </div><button type="button" style="color:blue; border-style: solid; border-radius: 5px; padding: 20px;" onclick="myTest()">Show manual amount option</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+                                        </div>
+                                    </form>
+                             
+                        </div> 
+                        <!-- ============================================================== -->
+                        <!-- end validation form -->
+                        <!-- ============================================================== -->
+                    </div>
+                    <!-- ============================================================== -->
+                    <!-- end pageheader -->
+                    <!-- ============================================================== -->
+                    <div class="row">
+
+
+<script type="text/javascript">
+ var mytesting = document.querySelector("#myDIV")
+ mytesting.style.display = "none"
+function myTest() {
+  var x = document.getElementById("myDIV");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
+</script>
+</script>
+                        </div>
+                    </div>
+                </div>
+                                          
+                <!-- ============================================================== -->
+                <!-- footer -->
+                <!-- ============================================================== -->
+                <div class="footer">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                 Copyright © 2020 All rights reserved. <a href="/">Cash Express Loan</a>.
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="text-md-right footer-links d-none d-sm-block">
+                                    <a href="javascript: void(0);">About</a>
+                                    <a href="javascript: void(0);">Support</a>
+                                    <a href="javascript: void(0);">Contact Us</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- end footer -->
+                <!-- ============================================================== -->
+            </div>
+            <!-- ============================================================== -->
+            <!-- end wrapper  -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- end main wrapper  -->
+        <!-- ============================================================== -->
+        <!-- Optional JavaScript -->
+        <!-- jquery 3.3.1 -->
+        <script src="{% static 'dashboard/assets/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
+        <!-- bootstap bundle js -->
+        <script src="{% static 'dashboard/assets/vendor/bootstrap/js/bootstrap.bundle.js' %}"></script>
+        <!-- slimscroll js -->
+        <script src="{% static 'dashboard/assets/vendor/slimscroll/jquery.slimscroll.js' %}"></script>
+        <!-- main js -->
+        <script src="{% static 'dashboard/assets/libs/js/main-js.js' %}"></script>
+        <!-- chart chartist js -->
+        <script src="{% static 'dashboard/assets/vendor/charts/chartist-bundle/chartist.min.js' %}"></script>
+        <!-- sparkline js -->
+        <script src="{% static 'dashboard/assets/vendor/charts/sparkline/jquery.sparkline.js' %}"></script>
+        <!-- morris js -->
+        <script src="{% static 'dashboard/assets/vendor/charts/morris-bundle/raphael.min.js' %}"></script>
+        <script src="{% static 'dashboard/assets/vendor/charts/morris-bundle/morris.js' %}"></script>
+        <!-- chart c3 js -->
+        <script src="{% static 'dashboard/assets/vendor/charts/c3charts/c3.min.js"></script>
+        <script src="{% static 'dashboard/assets/vendor/charts/c3charts/d3-5.4.0.min.js' %}"></script>
+        <script src="{% static 'dashboard/assets/vendor/charts/c3charts/C3chartjs.js' %}"></script>
+        <script src="{% static 'dashboard/assets/libs/js/dashboard-ecommerce.js' %}"></script>
+
+    <script type="text/javascript">
+    </body>
+     
+    </html>

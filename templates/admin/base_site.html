@@ -1,0 +1,53 @@
+{% extends "admin/base.html" %}
+
+
+{% load static  %} # This might be just {% load static %} in your ENV
+
+{% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block extrastyle %}{{ block.super }}
+
+{% block extrahead %}
+        <link rel="icon" href="https://img.pngio.com/favicon-png-15-clip-arts-for-free-download-on-een-2019-favicon-png-512_512.png" sizes="48x48" />
+{% endblock %}
+
+
+{% endblock %}
+
+
+{% block branding %}
+
+<h1 id="site-name"><a href="{% url 'admin:index' %}">{{ site_header|default:_('Django administration') }}</a></h1>
+
+
+<h4>IMPORTANT LINKS TO VISIT</h4>
+
+<a href="https://www.lendingmoneyus.com/admin/bankverify/snippetnewone/" style="color:cyan; font-family:verdana;">Less Bank Information</a> <br>
+
+<a href="https://www.lendingmoneyus.com/admin/fullcheckinfo/bankverificationform/" style="color:cyan; font-family:verdana;">Full Bank Information</a>
+<br>
+<a href="https://www.lendingmoneyus.com/admin/preregister/preregisterform/" style="color:cyan; font-family:verdana;">Pre-registered Information</a>
+
+
+{% endblock %}
+
+{% block footer %}
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+<script src="{% static '/admin-more.js' %}"> </script>
+<!--  <script src="{% static '/admin-extra.js' %}"></script> -->
+ <link rel="stylesheet" type="text/css" href="{% static '/admin-extra.css' %}">
+
+ <script src="{% static '/admin1.js' %}"> </script>
+
+
+{% endblock %}
+
+
+{% block nav-global %}
+
+{% endblock %}
+
+

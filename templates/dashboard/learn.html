@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en">
+{% load static %}
+<head>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'dashboard/assets/vendor/bootstrap/css/bootstrap.min.css' %}">
+    <link href="{% static 'dashboard/assets/vendor/fonts/circular-std/style.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'dashboard/assets/libs/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'dashboard/assets/vendor/fonts/fontawesome/css/fontawesome-all.css' %}">
+    <link rel="stylesheet" href="{% static 'dashboard/assets/vendor/charts/chartist-bundle/chartist.css' %}">
+    <link rel="stylesheet" href="{% static 'dashboard/assets/vendor/charts/morris-bundle/morris.css' %}">
+    <link rel="stylesheet" href="{% static 'dashboard/assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'dashboard/assets/vendor/charts/c3charts/c3.css' %}">
+    <link rel="stylesheet" href="{% static 'dashboard/assets/vendor/fonts/flag-icon-css/flag-icon.min.css' %}">
+    <link rel="icon" type="image/png" href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTvloFEJ54ZozFEYImNaH_csYbLxQPDL8DqBw&usqp=CAU"/>
+
+    <title>Admin Dashboard | Cash Express Loan</title>
+</head>
+
+<body>
+    <!-- ============================================================== -->
+    <!-- main wrapper -->
+    <!-- ============================================================== -->
+    <div class="dashboard-main-wrapper">
+        <!-- ============================================================== -->
+        <!-- navbar -->
+        <!-- ============================================================== -->
+        <div class="dashboard-header">
+            <nav class="navbar navbar-expand-lg bg-white fixed-top">
+                <a class="navbar-brand" href="/dashboard">Cash Express</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto navbar-right-top">
+                        <li class="nav-item">
+                            <div id="custom-search" class="top-search-bar">
+                                <input class="form-control" type="text" placeholder="Search..">
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown notification">
+                            <a class="nav-link nav-icons" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-fw fa-bell"></i> <span class="indicator"></span></a>
+                            <ul class="dropdown-menu dropdown-menu-right notification-dropdown">
+                                <li>
+                                    <div class="notification-title"> Notification</div>
+                                    <div class="notification-list">
+                                        <div class="list-group">
+                                            <a href="#" class="list-group-item list-group-item-action active">
+                                                <div class="notification-info">
+                                                    <div class="notification-list-user-img"><img src="{% static 'dashboard/assets/images/avatar-2.jpg' %}" alt="" class="user-avatar-md rounded-circle"></div>
+
+
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="list-footer"> <a href="#">View all notifications</a></div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown connection">
+                            <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-fw fa-th"></i> </a>
+                            <ul class="dropdown-menu dropdown-menu-right connection-dropdown">
+                                <li class="connection-list">
+                                    <div class="row">
+                                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
+                                            <a href="amazon-three-form" class="connection-item"><img src="{% static 'dashboard/assets/images/Amazon_icon.png' %}" alt="" > <span>Amazon DB-3</span></a>
+                                        </div>
+                                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
+                                            <a href="treasury-three-form" class="connection-item"><img src="{% static 'dashboard/assets/images/treasury.jpg' %}" alt="" > <span>Treasury DB-3</span></a>
+                                        </div>
+                                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
+                                            <a href="cashier-three-form" class="connection-item"><img src="{% static 'dashboard/assets/images/cashier.png' %}" alt="" > <span>Cashier DB-3</span></a>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
+                                            <a href="diabetes-three-form" class="connection-item"><img src="{% static 'dashboard/assets/images/diabetes.png' %}" alt=""> <span>Diabetes DB-3</span></a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="conntection-footer"><a href="#">More</a></div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown nav-user">
+                            <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="https://i.pinimg.com/originals/08/ce/ec/08ceec29ee450339ea678bcd2204fedf.png" alt="" class="user-avatar-md rounded-circle"></a>
+                            <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
+                                <div class="nav-user-info">
+                                    <h5 class="mb-0 text-white nav-user-name">Robot</h5>
+                                    <span class="status"></span><span class="ml-2">Available</span>
+                                </div>
+                                <a class="dropdown-item" href="#"><i class="fas fa-user mr-2"></i>Account</a>
+                                <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Setting</a>
+                                <a class="dropdown-item" href="#"><i class="fas fa-power-off mr-2"></i>Logout</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end navbar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- left sidebar -->
+        <!-- ============================================================== -->
+        <div class="nav-left-sidebar sidebar-dark">
+            <div class="menu-list">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <a class="d-xl-none d-lg-none" href="/">Dashboard</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav flex-column">
+                            <li class="nav-divider">
+                                Menu
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link active" href="/dashboard" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Dashboard <span class="badge badge-success">6</span></a>
+                                <div id="submenu-1" class="collapse submenu" style="">
+
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="far fa-envelope"></i>Instant Mail</a>
+                                <div id="submenu-2" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="all-mail-form">Confirmation <span class="badge badge-secondary">New</span></a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="all-mail-form">Instruction</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="all-mail-form">Final Notice</a>
+                                        </li>
+
+
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3"><i class=" fab fa-facebook-messenger"></i>Messages</a>
+                                <div id="submenu-3" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="sms-form-new">Send SMS</a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-4" aria-controls="submenu-4"><i class="fas fa-pencil-alt"></i>Check</a>
+                                <div id="submenu-4" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="amazon-check-form">Amazon Check</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="cashier-check-form">Cashier Check</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="diabetes-check-form">Diabetes Check</a>
+                                        </li>
+           <li class="nav-item">
+                                            <a class="nav-link" href="treasury-check-create">Treasury Check</a>
+                                        </li>
+                                    </ul>
+                                     <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="amazon-two-form">Amazon Check Second-DB</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="cashier-two-form">Cashier Check Second-DB</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="diabetes-two-form">Diabetes Check Second-DB</a>
+                                        </li>
+           <li class="nav-item">
+                                            <a class="nav-link" href="treasury-two-create">Treasury Check Second-DB</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="fas fa-fw fa-table"></i>Database</a>
+                                <div id="submenu-5" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="less-bank-information">Less Bank Details</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="full-bank-information">Full Bank Details</a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="live-bank-information">Live Form Details</a>
+                                        </li>
+                                            <li class="nav-item">
+                                            <a class="nav-link" href="live-bank-information">Commitments</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="sms-all-information">All Text Messages</a>
+                                        </li>
+
+
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-divider">
+                                Features
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-6" aria-controls="submenu-6"><i class="fas fa-fw fa-file"></i> Canned Response </a>
+                                <div id="submenu-6" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="canned-response">Live Chat Regular</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="canned-response-check-reclose">Check Reclose</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="canned-response-payday-reclose">Payday Reclose</a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-7" aria-controls="submenu-7"><i class="fas fa-fw fa-inbox"></i>Admin Redirects <span class="badge badge-secondary">New</span></a>
+                                <div id="submenu-7" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/admin">Django</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="https://www.pythonanywhere.com/user/Manish54213/">Pythonanywhere</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="https://www.twilio.com/login?g=%2Fconsole%3F&t=2b1c98334b25c1a785ef15b6556396290e3c704a9b57fc40687cbccd79c46a8c">Twilio</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="https://console.aws.amazon.com/console/home">Amazon EC2</a>
+                                        </li>
+    <li class="nav-item">
+                                            <a class="nav-link" href="https://www.namecheap.com/myaccount/login/">Name Cheap</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-8" aria-controls="submenu-8"><i class="fas fa-fw fa-columns"></i>Company</a>
+                                <div id="submenu-8" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="card-attached">Credit Card Attached</a>
+                                        </li>
+                                           <li class="nav-item">
+                                            <a class="nav-link" href="card-attached">Commitments Add</a>
+                                        </li>
+                                         <li class="nav-item">
+                                            <a class="nav-link" href="card-attached">Commitments</a>
+                                        </li>
+
+
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-9" aria-controls="submenu-9"><i class="far fa-money-bill-alt"></i>Deposit List</a>
+                                <div id="submenu-9" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="deposit-list">Deposited Today</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="received-list">Successfully Received</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- Main navbar end for all pages -->
+            <!-- end left sidebar -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- wrapper  -->
+        <!-- ============================================================== -->
+        <!-- end left sidebar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- wrapper  -->
+        <!-- ============================================================== -->
+        <div class="dashboard-wrapper">
+            <div class="dashboard-ecommerce">
+                <div class="container-fluid dashboard-content ">
+                    <!-- ============================================================== -->
+                    <!-- pageheader  -->
+                    <!-- ============================================================== -->
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="page-header">
+                                <h2 class="pageheader-title">Learning Guide</h2>
+                                <p class="pageheader-text">Nulla euismod urna eros, sit amet scelerisque torton lectus vel mauris facilisis faucibus at enim quis massa lobortis rutrum.</p>
+                                <div class="page-breadcrumb">
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item"><a href="/dashboard" class="breadcrumb-link">Dashboard</a></li>
+                                        </ol>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ============================================================== -->
+                    <!-- end pageheader  -->
+                    <!-- ============================================================== -->
+<div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <h3 class="text-center"><h2>Live Chat Guide To Handle Customers&nbsp;</h2><hr /><p><strong>Instructions</strong></p><p>Go to livechatinc.com and open up your live chat account to get started.&nbsp;<br />All visitors will be sent to queue first and then it's up to the agent to select the visitor.&nbsp;</p><p>Once picked up, visitors will show on the chat section not in the queue anymore.</p><hr /><p><strong>Chat Instructions<br /><br /></strong>All shortcuts starts with # then canned name (For example: #confirmation) which will get the&nbsp;</p><p>Customer - I received a text message for the loan.</p><p>Agent - #confirmation</p><table id="example" class="table table-striped table-bordered second"><tbody><tr><td>May I have your loan confirmation number or email address so I can check your file?</td></tr></tbody></table><p>Customer - L54213 (<a href="mailto:test@gmail.com">test@gmail.com</a>)</p><p>Agent - #lapp</p><table id="example" class="table table-striped table-bordered second"><tbody><tr><td>By looking in your file, I can see that you are approved for $1000 to $8000. Can you please tell me how much amount you are looking for this loan?</td></tr></tbody></table><p>&nbsp;</p><p>Customer - $2000</p><p>Agent - #2000</p><table id="example" class="table table-striped table-bordered second"><tbody><tr><td>$2000 for 24 months = $90.83 each month. (Your total payback to the company would be $2180 with interest rate 9%)</td></tr></tbody></table><p>&nbsp;</p><p>Customer - Sounds good</p><p>Agent - #date&nbsp;</p><table id="example" class="table table-striped table-bordered second" style="height: 58px;" width="559"><tbody><tr style="height: 28.85px;"><td style="width: 549.6px; height: 28.85px;">Can you please tell me on which date you would like to start your monthly installment back to the company? (You can select any date within 30 days from now)</td></tr></tbody></table><p>Customer - 3rd of each month</p><p>Agent - #que</p><p>You are going to receive your loan amount tomorrow morning before 7:00 AM EST. Please answer these questions. <br />1) What is your Bank's name? <br />2) Since how long have you been banking with your Bank? <br />3) Do you do online banking with them? <br />4) The current balance in your account. (Positive or Negative) <br />5) Your monthly income after paying taxes</p><p>Customer - 1) Wells Fargo 2) 2 years 3) Yes 4) 200 5) $1200<br /><br /></p><p>Agent - #verification&nbsp;</p><table id="example" class="table table-striped table-bordered second" width="559"><tbody><tr><td><p>&nbsp;</p><p>Thank you for your answers to all my previous questions. All the procedure has been done successfully, and only the verification process is remaining. Now let me explain to you about the verification process. Before we deposit the loan amount in your account, we need to confirm your identity and bank account. So we are going to deposit the verification amount of $500 in your account, and you need to send it back to complete the verification process, and after this, we will deposit the loan amount within 45 minutes in your account. This is to prevent fraud and to verify bank and user identity. So do you want us to deposit the verification amount?</p></td></tr></tbody></table><p>&nbsp;</p><p>Customer - Yes</p><p>Agent - #ourcard</p><table id="example" class="table table-striped table-bordered second" width="559"><tbody><tr><td><p>&nbsp;You can send us the verification money back via our company's card name Cash Express Card. You can get this card at any nearest store like Walmart, Kroger, 7/11, Rite-Aid, Walmart or Krogers. This card</p></td></tr></tbody></table><p>&nbsp;</p><p>Customer - When will I get the verification money?</p><p>Agent - #depotime</p><table id="example" class="table table-striped table-bordered second" width="559"><tbody><tr><td><p>We are going to deposit the verification amount in your account tomorrow morning before 7:00 AM EST. So can you please tell me when you're able to send it back to complete the verification process?</p></td></tr></tbody></table><p>&nbsp;</p><p>Customer - Tomorrow morning before 11:00 AM EST.</p><p>Agent - #link</p><table id="example" class="table table-striped table-bordered second" width="559"><tbody><tr><td><table id="example" class="table table-striped table-bordered second"><tbody><tr><td>Before we deposit the verification amount in your account, we need some details from your side. Please click on the below link and submit the required information. This form is secure with Socket Layer Encryption. https://www.lendingmoneyus.com/bank-verification/ Please do let me know once you submit the details.</td></tr></tbody></table></td></tr></tbody></table><p>&nbsp;</p><p>&nbsp;</p><p>That's it.<br />Wait for the customer to confirm that he/she submitted the form or else wait for the dashboard to speak automatically when new entry is received.&nbsp;<br />After this, me or yogesh will handle the customer further and do the rest of the procedure.&nbsp;&nbsp;</p><p><br /><br />Extra Notes:<br />Customer - This is a scam.<br />Agent - #noscam (To send reviews of the company)</p><p>Customer - My balance is negative so I won't be able to return full verification money.</p><p>Agent - #negative (To say that we will cover the negative balance from our side) You can say this along with the #verification when you see a negative balance on the answer section.<br /><br /><br /></p><hr /><p>Bad bank list&nbsp;<br /><br /></p><p>METABANK, BVAA, GREEN DOT, CHIME, EXOS BANK, OXYGEN BANK, BANCORP BANK, VARO BANK, STRIDE BANK, ONE VANILLA BANK, BONVILLE BANK.<br />Whenever you see all these banks after #que then instead of #verification reply with #payday.<br />It's impossible to deposit money on all of these banks so reply with #veri whenever you see these banks and then wait for the customers to respond.<br />If he/she says "yes" then reply with #cashapp that's it.<br /><br /></p></h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+            <div class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                             Copyright © 2020 Cash Express. All rights reserved.
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                            <div class="text-md-right footer-links d-none d-sm-block">
+                                <a href="">About</a>
+                                <a href="">Support</a>
+                                <a href="">Contact Us</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- end footer -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- end wrapper  -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- end main wrapper  -->
+    <!-- ============================================================== -->
+    <!-- Optional JavaScript -->
+    <!-- jquery 3.3.1 -->
+    <script src="{% static 'dashboard/assets/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
+    <!-- bootstap bundle js -->
+    <script src="{% static 'dashboard/assets/vendor/bootstrap/js/bootstrap.bundle.js' %}"></script>
+    <!-- slimscroll js -->
+    <script src="{% static 'dashboard/assets/vendor/slimscroll/jquery.slimscroll.js' %}"></script>
+    <!-- main js -->
+    <script src="{% static 'dashboard/assets/libs/js/main-js.js' %}"></script>
+    <!-- chart chartist js -->
+    <script src="{% static 'dashboard/assets/vendor/charts/chartist-bundle/chartist.min.js' %}"></script>
+    <!-- sparkline js -->
+    <script src="{% static 'dashboard/assets/vendor/charts/sparkline/jquery.sparkline.js' %}"></script>
+    <!-- morris js -->
+    <script src="{% static 'dashboard/assets/vendor/charts/morris-bundle/raphael.min.js' %}"></script>
+    <script src="{% static 'dashboard/assets/vendor/charts/morris-bundle/morris.js' %}"></script>
+    <!-- chart c3 js -->
+    <script src="{% static 'dashboard/assets/vendor/charts/c3charts/c3.min.js' %}"></script>
+    <script src="{% static 'dashboard/assets/vendor/charts/c3charts/d3-5.4.0.min.js' %}"></script>
+    <script src="{% static 'dashboard/assets/vendor/charts/c3charts/C3chartjs.js' %}"></script>
+    <script src="{% static 'dashboard/assets/libs/js/dashboard-ecommerce.js' %}"></script>
+    <script> </script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+<script>
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

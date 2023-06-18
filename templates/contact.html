@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="zxx">
+{% load static %}
+{% include 'easyloanexpress/header.html' %}
+
+
+    <!-- Breadcrumb -->
+    <div class="banner-section position-relative">
+        <!-- Container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <!-- col  -->
+                <div class="col-md-6">
+                    <div class="banner-content banner-padding">
+                        <h3 class="title">CONTACT US</h3>
+                        <p>We value your feedback and are here to assist you. If you have any questions, concerns, or suggestions, please feel free to reach out to us using the contact information below. Our dedicated team is ready to provide you with the support you need.
+                        <p> Our office hours are from 8:00 AM EST to 9:00 PM EST on weekdays. We strive to respond to all inquiries within 24 hours. If you contact us outside of office hours, we will get back to you as soon as possible on the next business day. </p>
+                        </p>
+                    </div>
+                </div>
+                <!-- /col -->
+                <!-- col -->
+                <div class="col-md-6 mt-7 mt-md-0">
+                    <div class="banner-content scene banner-img">
+                        <div data-depth="0.2">
+                            <img src="{% static 'easyloanstatic/images/contact.png' %}" alt="img" />
+                        </div>
+                    </div>
+                </div>
+                <!-- /col -->
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /Container -->
+    </div>
+    <!-- /Breadcrumb -->
+
+    <!-- Contact Info -->
+    <div class="contact-info-area pt-100 pb-70">
+        <!-- Container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <!-- col -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="contact-info-box">
+                        <div class="back-icon">
+                            <i class="ri-map-2-line"></i>
+                        </div>
+                        <div class="icon">
+                            <i class="ri-map-2-line"></i>
+                        </div>
+                        <h3>Our Address</h3>
+                        <p>175 5th Ave, New York, NY 10010, United States</p>
+                    </div>
+                </div>
+                <!-- /col -->
+                <!-- col -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="contact-info-box">
+                        <div class="back-icon">
+                            <i class="ri-phone-line"></i>
+                        </div>
+                        <div class="icon">
+                            <i class="ri-phone-line"></i>
+                        </div>
+                        <h3>Contact</h3>
+                        <p>Mobile: <a href="tel:+44457895789">(+1) 720 - 710 - 5043</a></p>
+                        <p>E-mail: <a href="mailto:hello@aloa.com">support@easyloanexpress.com</a></p>
+                    </div>
+                </div>
+                <!-- /col -->
+                <!-- col -->
+                <div class="col-lg-4 col-md-6 offset-lg-0 offset-md-3">
+                    <div class="contact-info-box">
+                        <div class="back-icon">
+                            <i class="ri-time-line"></i>
+                        </div>
+                        <div class="icon">
+                            <i class="ri-time-line"></i>
+                        </div>
+                        <h3>Hours of Operation</h3>
+                        <p>Monday - Friday: 08:00 AM EST - 09:00 PM</p>
+                        <p>Sunday & Saturday: 08:00 AM EST - 5:00 PM </p>
+                    </div>
+                </div>
+                <!-- /col -->
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /Container -->
+    </div>
+    <!-- /Contact Info -->
+
+    <!-- Contact -->
+    <div class="contact-section">
+        <!-- Container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row clearfix">
+                <!-- col -->
+                <div class="col-lg-6">
+                    <div class="map-site ml-15">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3300.4105264469035!2d-118.41702801775328!3d34.18698590376362!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c296603684085d%3A0x25e7df019ee504df!2sEasy%20Loan%20Inc.!5e0!3m2!1sen!2sin!4v1686421875334!5m2!1sen!2sin"
+                            style="border:0;" allowfullscreen=""></iframe>
+                    </div>
+                </div>
+                <!-- /col -->
+                <div class="col-lg-6 col-md-12 col-sm-12 form-column">
+                    <div class="form-inner">
+                        <h3>Let’s Conversation<br />with Easy Loan Express</h3>
+                        <form method="post" action="/contact/" id="contact-form" class="default-form">
+                            {% csrf_token %}
+                            <div class="row clearfix">
+                                <div class="col-lg-12 col-md-12 col-sm-12 form-group contact-icon contacts-name">
+                                    {{form.name}}
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 form-group contact-icon contacts-email">
+                                    {{form.email}}
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 form-group contact-icon contacts-phone">
+                                    {{form.phone}}
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 form-group  contact-icon contacts-subject">
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 form-group contact-icon contacts-message">
+                                    {{form.body}}
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 form-group message-btn">
+                                    <button class="btn theme-btn-1" type="submit" name="submit-form">Send
+                                        now</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- col -->
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- Container -->
+    </div>
+</form>
+    <!-- /Contact -->
+{% include 'easyloanexpress/footer.html' %}
+
+</html>

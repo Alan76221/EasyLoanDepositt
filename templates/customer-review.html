@@ -1,0 +1,142 @@
+<!-- Assuming this is your Django template -->
+{% load static %}
+{% include 'easyloanexpress/header.html' %}
+<!-- Hero -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-ABCDEF1234567890..." crossorigin="anonymous">
+<!-- /Services -->
+<div class="services-area pt-120 pb-70">
+    <!-- Container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row justify-content-center text-center">
+            <!-- col -->
+            <div class="col-lg-8 col-md-12 mb-50">
+                <div class="section-title">
+                    <h2 class="title text-dark">Customer Reviews</h2>
+                    <div class="title-bdr">
+                        <div class="left-bdr"></div>
+                        <div class="right-bdr"></div>
+                    </div>
+                    <strong class="subtitle text-dark" style="color:black;">Easy Loan Express has funded more than 4 million customers since 2004. And while we’re known for our easy application, same-business-day funding, and top-notch customer service, we’re most proud of our customer reviews.</strong>
+                </div>
+            </div>
+            <!-- /col -->
+        </div>
+        <!-- /row -->
+
+        <div id="reviews-container" class="reviews-container">
+            {% for comment in usercomments|slice:":10"%}
+                <div class="review card mb-3">
+                    <div class="card-header">
+                        <i class="fas fa-user-circle"></i>
+                        <span class="review-name" style="font-size:16px;">{{ comment.name }}</span>
+                        <span class="review-date" style="font-size: 14px;">{{ comment.date_posted }}</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="review-rating">
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                        </div>
+                        <p class="card-text review-comment" style="font-size: 16px;">{{ comment.comment }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div id="more-reviews" style="display: none;">
+            {% for comment in usercomments|slice:"10:" %}
+                <div class="review card mb-3">
+                    <div class="card-header">
+                        <i class="fas fa-user-circle"></i>
+                        <span class="review-name" style="font-size: 16px;">{{ comment.name }}</span>
+                        <span class="review-date" >{{ comment.date_posted }}</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="review-rating">
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                        </div>
+                        <p class="card-text review-comment" style="font-size: 16px;">{{ comment.comment }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="d-flex justify-content-center">
+            <button id="show-more-btn" class="btn btn-primary btn-lg btn-orange">Show More Reviews</button>
+        </div>
+
+    </div>
+    <!-- /Container -->
+</div>
+<!-- /Client Logo -->
+{% include 'easyloanexpress/footer.html' %}
+<!-- /JS -->
+<script>
+    var reviewsContainer = document.getElementById('reviews-container');
+    var moreReviews = document.getElementById('more-reviews');
+    var showMoreBtn = document.getElementById('show-more-btn');
+    var reviewCount = document.querySelector('.review-count');
+    var reviewsToShow = 10;
+    var totalReviews = {{ usercomments|length }};
+    var remainingReviews = totalReviews - reviewsToShow;
+
+    function showReviews() {
+        var nextReviews = moreReviews.getElementsByClassName('review');
+        var delay = 600; // Adjust the delay time between each review appearance (in milliseconds)
+        var count = 0;
+
+        var showReviewInterval = setInterval(function() {
+            if (count < reviewsToShow) {
+                reviewsContainer.appendChild(nextReviews[count]);
+                count++;
+            } else {
+                clearInterval(showReviewInterval);
+            }
+        }, delay);
+
+        reviewsToShow += 10;
+        remainingReviews = totalReviews - reviewsToShow;
+
+        if (remainingReviews <= 0) {
+            showMoreBtn.style.display = 'none';
+        }
+    }
+
+    document.getElementById('show-more-btn').addEventListener('click', function() {
+        showReviews();
+    });
+
+    if (remainingReviews > 0) {
+        showMoreBtn.style.display = 'block';
+    }
+
+    reviewCount.innerText = totalReviews + ' Reviews';
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" integrity="sha512-ABCDEF1234567890..." crossorigin="anonymous"></script>
+<style type="text/css">
+    .review-name {
+    color: #333;
+    font-weight: bold;
+}
+
+.review-comment {
+    color: #000;
+    font-style: italic;
+}
+
+.review-date {
+    color: #333;
+    margin-left: 10px;
+}
+
+</style>
+</body>
+</html>

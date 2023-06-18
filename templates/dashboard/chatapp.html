@@ -1,0 +1,74 @@
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+{% load static %}
+
+
+<link rel="stylesheet" href="{% static '/dashboard/chatapp/css/normalize.css' %}">
+
+    <link rel='stylesheet prefetch' href='{% static '/dashboard/chatapp/https://fonts.googleapis.com/css?family=Open+Sans'>
+<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.3/jquery.mCustomScrollbar.min.css'>
+
+        <link rel="stylesheet" href="{% static '/dashboard/chatapp/css/style.css' %}">
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#config-web-app -->
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-database.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyDwk1o3cAlftKSAfBtIaqZhcij-Z7KbhP8",
+    authDomain: "livechatapp-3f394.firebaseapp.com",
+    databaseURL: "https://livechatapp-3f394.firebaseio.com",
+    projectId: "livechatapp-3f394",
+    storageBucket: "livechatapp-3f394.appspot.com",
+    messagingSenderId: "961860320906",
+    appId: "1:961860320906:web:934a732972755a51c87773",
+    measurementId: "G-PGWZWS9SGB"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
+<style>
+  figure.avatar {
+    bottom: 0px !important;
+  }
+  .btn-delete {
+    background: red;
+    color: white;
+    border: none;
+    margin-left: 10px;
+    border-radius: 5px;
+  }
+</style>
+
+<div class="chat">
+  <div class="chat-title">
+    <h1>Chat Room</h1>
+    <h2>Firebase</h2>
+    <figure class="avatar">
+      <img src="https://p7.hiclipart.com/preview/349/273/275/livechat-online-chat-computer-icons-chat-room-web-chat-others.jpg" /></figure>
+  </div>
+  <div class="messages">
+    <div class="messages-content"></div>
+  </div>
+  <div class="message-box">
+    <textarea type="text" class="message-input" id="message" placeholder="Type message..."></textarea>
+    <button type="submit" class="message-submit">Send</button>
+  </div>
+
+</div>
+<div class="bg"></div>
+
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.3/jquery.mCustomScrollbar.concat.min.js'></script>
+
+        <script src="js/index.js?v=<?= time(); ?>"></script>

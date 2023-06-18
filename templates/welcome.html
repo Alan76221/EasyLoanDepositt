@@ -1,0 +1,626 @@
+<head>
+<!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '3676832522414607');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=3676832522414607&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Facebook Pixel Code -->
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.cs">
+{% load static %}
+<!------ Include the above in your HEAD tag ---------->
+</head>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-card" id="myNavbar">
+    <a href="/" class="w3-bar-item w3-button w3-wide">PDF APPLICATION</a>
+    <!-- Right-sided navbar links -->
+    <div class="w3-right w3-hide-small">
+      <a href="" class="w3-bar-item w3-button">HOME</a>
+      <a href="counter" class="w3-bar-item w3-button"><i class="fa fa-th"></i> COUNTER</a>
+      <a href="login" class="w3-bar-item w3-button"><i class="fa fa-user"></i> LOGIN</a>
+
+    </div>
+    <!-- Hide right-floated links on small screens and replace them with a menu icon -->
+
+    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
+      <i class="fa fa-bars"></i>
+    </a>
+  </div>
+</div>
+
+<!-- Sidebar on small screens when clicking the menu icon -->
+<nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large" style="display:none" id="mySidebar">
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Close ×</a>
+  <a href="/" onclick="w3_close()" class="w3-bar-item w3-button">HOME</a>
+  <a href="login" onclick="w3_close()" class="w3-bar-item w3-button">LOGIN</a>
+  <a href="counter" onclick="w3_close()" class="w3-bar-item w3-button">COUNTER</a>
+
+</nav>
+<header class="bgimg-1 w3-display-container w3-grayscale-min" id="home">
+  <div class="w3-display-left w3-text-white" style="padding:48px">
+    <h1 id="test54213">Start something that matters</span><br>
+    <p id="manish-large">Stop wasting valuable time with projects that just isn't you.</span>
+    <p><a href="counter" class="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off" id="manishbutton">Show Me The Counter</a></p>
+  </div>
+  <div class="w3-display-bottomleft w3-text-grey w3-large" style="padding:24px 48px">
+    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-snapchat w3-hover-opacity"></i>
+    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+  </div>
+</header>
+
+
+
+<style>
+
+
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+
+body, html {
+  height: 100%;
+  line-height: 1.8;
+}
+
+/* Full height image header */
+.bgimg-1 {
+  background-position: center;
+  background-size: cover;
+  background-image: url("https://www.wallpaperup.com/uploads/wallpapers/2014/09/26/456768/f07635fc24d8e33b3bddac1b15e6ea51-700.jpg");
+  min-height: 100%;
+}
+
+.w3-bar .w3-button {
+  padding: 16px;
+}
+
+
+
+</style>
+</head>
+<body>
+
+<div class="hero-image">
+  <div class="hero-text">
+
+  </div>
+</div>
+
+
+<style>
+#div11 {
+  width: 100%;
+  margin-top: 50px;
+  margin-bottom: -20px;
+  color: blue;
+
+  font-weight: bold;
+  position: relative;
+  -webkit-animation: mymove 5s infinite; /* Safari 4.0 - 8.0 */
+  animation: mymove 5s infinite;
+}
+
+/* Safari 4.0 - 8.0 */
+#div11 {-webkit-animation-timing-function: linear;}
+
+/* Standard syntax */
+#div11 {animation-timing-function: linear;}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes mymove {
+  from {left: 0px;}
+  to {left: 100%}
+}
+
+/* Standard syntax */
+@keyframes mymove {
+  from {left: 0px;}
+  to {left: 100%}
+}
+
+      }
+
+
+
+</style>
+
+
+
+<h1 id='manishtwo'> PDF APPLICATION BY BLOODBROTHERS </h1>
+<style>
+#manishtwo{
+  color: white;
+  position: absolute;
+  top: 550px;
+  right: 350px;
+  font-family: colibri
+}
+
+</style>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="box">
+    <div class="container">
+     	<div class="row">
+
+			    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+
+					<div class="box-part text-center">
+
+                        <img src="{% static "western-union.png" %}" width="100"> </i>
+
+						<div class="title">
+							<h4>WESTERN UNION</h4>
+						</div>
+
+						<div class="text">
+							<span>Create Western Union if you want to send the money through Western Union.</span>
+
+						</div>
+
+
+  <a class="btn btn-primary" href="westernform">
+     Generate
+  </a>
+
+
+					 </div>
+				</div>
+
+				 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+
+					<div class="box-part text-center">
+
+                        <img src="{% static "statistics.png" %}" width="100"> </i>
+
+						<div class="title">
+							<h4>LOAN TAX</h4>
+						</div>
+
+						<div class="text">
+							<span>Create this one if loan tax is pending and keep the customers rolling</span>
+						</div>
+  <a class="btn btn-primary" href="loantaxform">
+     Generate
+  </a>
+
+					 </div>
+				</div>
+
+				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+
+					<div class="box-part text-center">
+
+                        <img src="{% static "debt.png" %}" width="100"> </i>
+
+						<div class="title">
+							<h4>OUTSTANDING</h4>
+						</div>
+
+						<div class="text">
+							<span>Create outstanding document if debtor have outstanding on his/her name.</span>
+						</div>
+  <a class="btn btn-primary" href="outstandingform">
+     Generate
+  </a>
+    				 </div>
+				</div>
+
+				 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+
+					<div class="box-part text-center">
+
+                        <img src="{% static "debt (1).png" %}" width="100"> </i>
+
+						<div class="title">
+							<h4>REMAINING OUTSTANDING</h4>
+						</div>
+
+						<div class="text">
+							<span>Outstanding still remaining? Use this one for rest of the outstanding.</span>
+						</div>
+
+
+  <a class="btn btn-primary" href="remainoutstandingform">
+     Generate
+  </a>
+					 </div>
+				</div>
+
+				 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+
+					<div class="box-part text-center">
+
+                        <img src="{% static "fee.png" %}" width="100"> </i>
+
+						<div class="title">
+							<h4>FILE CHARGES</h4>
+						</div>
+
+						<div class="text">
+							<span>Generate this one if you would like to charge files charges.</span>
+						</div>
+
+  <a class="btn btn-primary" href="filechargesform">
+     Generate
+  </a>
+
+          </div>
+        </div>
+
+   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+
+          <div class="box-part text-center">
+
+                        <img src="{% static "deal.png" %}" width="100"> </i>
+
+            <div class="title">
+              <h4>LOAN AGREEMENT FOR ALL</h4>
+            </div>
+
+            <div class="text">
+              <span>Generate loan document for any amount.</span>
+            </div>
+
+  <a class="btn btn-primary" href="agreementform">
+     Generate
+  </a>
+
+
+
+
+
+		</div>
+    </div>
+</div>
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+</div>
+</div>
+
+<footer class="w3-center w3-black w3-padding-64">
+  <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+  <div class="w3-xlarge w3-section">
+    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-snapchat w3-hover-opacity"></i>
+    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+  </div>
+  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">Blood Brothers</a></p>
+</footer>
+
+<script>
+// Modal Image Gallery
+function onClick(element) {
+  document.getElementById("img01").src = element.src;
+  document.getElementById("modal01").style.display = "block";
+  var captionText = document.getElementById("caption");
+  captionText.innerHTML = element.alt;
+}
+
+
+// Toggle between showing and hiding the sidebar when clicking the menu icon
+var mySidebar = document.getElementById("mySidebar");
+
+function w3_open() {
+  if (mySidebar.style.display === 'block') {
+    mySidebar.style.display = 'none';
+  } else {
+    mySidebar.style.display = 'block';
+  }
+}
+
+// Close the sidebar with the close button
+function w3_close() {
+    mySidebar.style.display = "none";
+}
+</script>
+</body>
+
+<script type="text/javascript">
+  $('.counter-count').each(function () {
+        $(this).prop('Counter',0).animate({
+            Counter: $(this).text()
+        }, {
+            duration: 5000,
+            easing: 'swing',
+            step: function (now) {
+                $(this).text(Math.ceil(now));
+            }
+        });
+    });
+</script>
+
+<style>
+
+.counter
+{
+    background-color: #eaecf0;
+    text-align: center;
+    color: blue;
+}
+.employees,.customer,.design,.order
+{
+    margin-top: 70px;
+    margin-bottom: 70px;
+}
+.counter-count
+{
+    font-size: 18px;
+    background-color: #00b3e7;
+    border-radius: 50%;
+    position: relative;
+    color: #ffffff;
+    text-align: center;
+    line-height: 92px;
+    width: 92px;
+    height: 92px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    display: inline-block;
+}
+
+.employee-p,.customer-p,.order-p,.design-p
+{
+    font-size: 24px;
+    color: #000000;
+    line-height: 34px;
+}
+h4 {
+	font-style:Playfair Display;
+	color:blue;
+	font-weight: bold;
+}
+
+	body{
+    background: #eee;
+}
+span{
+    font-size:16px;
+    color:black;
+    font-family: Karla;
+}
+a{
+  text-decoration:none;
+  color: #0062cc;
+  border-bottom:2px solid #0062cc;
+}
+.box{
+    padding:60px 0px;
+}
+
+.box-part{
+    background:#FFF;
+    border-radius:0;
+    padding:60px 10px;
+    margin:30px 0px;
+}
+.text{
+    margin:20px 0px;
+}
+
+.fa{
+     color:#4183D7;
+}
+
+.w3-jumbo{
+  color: white;
+}
+
+.w3-large{
+  color: white;
+}
+</style>
+
+<style>
+/*
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+
+@media (min-width: 1281px) {
+  .bgimg-1 {
+  background-position: center;
+  background-size: cover;
+  background-image: url("https://www.wallpaperup.com/uploads/wallpapers/2014/09/26/456768/f07635fc24d8e33b3bddac1b15e6ea51-700.jpg");
+  min-height: 100%;
+}
+
+
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+
+body, html {
+  height: 100%;
+  line-height: 1.8;
+}
+
+.w3-bar .w3-button {
+  padding: 16px;
+}
+
+  #manish-large{
+  font-size: 15px;
+}
+
+}
+
+/*
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px to 1280px
+*/
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+
+.bgimg-1 {
+  background-position: center;
+  background-size: cover;
+  background-image: url("https://www.wallpaperup.com/uploads/wallpapers/2014/09/26/456768/f07635fc24d8e33b3bddac1b15e6ea51-700.jpg");
+  min-height: 100%;
+}
+
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+
+body, html {
+  height: 100%;
+  line-height: 1.8;
+}
+
+.w3-bar .w3-button {
+  padding: 16px;
+}
+#manish-large{
+  font-size: 1px;
+}
+}
+
+/*
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+ .bgimg-1 {
+  background-position: center;
+  background-size: cover;
+  background-image: url("https://www.wallpaperup.com/uploads/wallpapers/2014/09/26/456768/f07635fc24d8e33b3bddac1b15e6ea51-700.jpg");
+  min-height: 100%;
+
+}
+
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+
+body, html {
+  height: 100%;
+  line-height: 1.8;
+}
+
+.w3-bar .w3-button {
+  padding: 16px;
+}
+
+}
+
+/*
+  ##Device = Tablets, Ipads (landscape)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+ .bgimg-1 {
+  background-position: center;
+  background-size: cover;
+  background-image: url("https://www.wallpaperup.com/uploads/wallpapers/2014/09/26/456768/f07635fc24d8e33b3bddac1b15e6ea51-700.jpg");
+  min-height: 100%;
+}
+
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+
+body, html {
+  height: 100%;
+  line-height: 1.8;
+}
+
+.w3-bar .w3-button {
+  padding: 16px;
+}
+
+}
+
+/*
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+
+ .bgimg-1 {
+  background-position: center;
+  background-size: cover;
+  background-image: url("https://www.wallpaperup.com/uploads/wallpapers/2014/09/26/456768/f07635fc24d8e33b3bddac1b15e6ea51-700.jpg");
+  min-height: 100%;
+}
+
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+
+body, html {
+  height: 100%;
+  line-height: 1.8;
+}
+
+.w3-bar .w3-button {
+  padding: 16px;
+}
+
+}
+
+/*
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+
+.bgimg-1 {
+  background-position: center;
+  background-size: 100% 80%;
+  background-repeat: no-repeat;
+  background-image: url("https://www.wallpaperup.com/uploads/wallpapers/2014/09/26/456768/f07635fc24d8e33b3bddac1b15e6ea51-700.jpg");
+  height: 20%;
+
+
+}
+
+ #test54213 {
+  color: white;
+  font-size: 20px;
+  text-align: center;
+  padding-top: 95px;
+
+}
+
+#manish-large{
+  color:white;
+  font-size: 10px;
+  padding-top: 5px;
+  margin-bottom: 50px;
+}
+#manishbutton{
+  padding-top: 50px;
+}
+}
+
+}
+</style>
+
+

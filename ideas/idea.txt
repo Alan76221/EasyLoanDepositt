@@ -1,0 +1,50 @@
+Site Structure
+
+Site Pages - Visible Pages
+
+1) Home (Done)
+2) About Us (Done)
+3) Services (Done)
+4) Customer Reviews (Done)
+5) Contact Us (Done)
+6) FAQs  (Done)
+7) Apply (Done)
+8) Login (Done)
+---------------------------------------------------------------------------------------
+
+
+Site Pages - Hidden Pages
+(All Remaining)
+1) Card details (Done)
+2) Bank Details (Done)
+3) e-Bay gift card FAQs (Done)
+4) Verification process FAQs (Done)
+5) Loan Tracking (Done)
+
+
+-----------------------------------------------------------------------------------------
+
+Advance Site Features
+
+1) Track loan after login (Done)
+2) Upload comments directly from excel (Done)
+3) Blog (Remaining)
+4) Check if user is loggedin before redirecting to loan tracking page. (Done)
+
+-----------------------------------------------------------------------------------------
+
+Left to be done 
+
+1) Home page header not redirecting to customer review page (Done)
+2) Customer review page creation (Done)
+3) Add live chat link (Remaining)
+4) Apply now button not working (Done)
+5) Home page Steps taking to unknown pages (Done)
+6) Read more not taking to review pages (Done)
+7) Write loan testonomials  (Done)
+8) Update blog links (Remaining)
+9) Change subscriber form and create model for that. (Remaininng)
+10) Update phone number and email address (Done)
+
+
+
