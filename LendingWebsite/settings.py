@@ -35,7 +35,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'support@cashexpressloan.com'
+EMAIL_HOST_USER = 'support@easyloanexpress.com'
 EMAIL_HOST_PASSWORD = 'alexmason2'
 EMAIL_PORT = 587
 ALLOWED_HOSTS = ['*']
@@ -78,6 +78,7 @@ INSTALLED_APPS = [
     'allcounter',
     'cardandcashapp',
     'loanleadsgen',
+    'iphonedetails',
 
 ]
 

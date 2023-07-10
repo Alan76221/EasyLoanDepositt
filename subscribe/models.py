@@ -14,7 +14,8 @@ class SubsNew(models.Model):
 	scott_new_check_number = models.IntegerField(max_length=100, default=50400395)
 	final_scott =  models.IntegerField(max_length=100, default=50400395)
 	scott_customer_number = models.IntegerField(max_length=100, default=17513)
-	cashier2022_check_number = models.IntegerField(max_length=100, default=2467228)
+	cashier2022_check_number = models.IntegerField(max_length=100, default=151)
+	personal_check_number = models.IntegerField(max_length=100, default=151)
 
 	def __str__(self):
 		return self.subsname
