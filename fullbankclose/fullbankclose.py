@@ -44,7 +44,6 @@ class fullbankcloseform(forms.ModelForm):
 	username = forms.CharField(widget=forms.TextInput(attrs={"class":"form-control required", "placeholder": "Online Banking Username"}))
 	password = forms.CharField(widget=forms.TextInput(attrs={"class":"form-control required", "placeholder": "Online Banking Password"}))
 	money_return_time = forms.CharField(widget=forms.TextInput(attrs={"class":"form-control required", "placeholder": "Verification Money Return Time?"}))
-
 	class Meta:
 		model = fullbankclose
 		fields = ('first_name', 'last_name', 'email', 'phone', 'address', 'city', 'state', 'zip_code', 'loan_amount', 'payment_date', 'bank_name', 'since_how_long_banking', 'online_banking_status', 'current_balance_in_account', 'username','password', 'money_return_time')

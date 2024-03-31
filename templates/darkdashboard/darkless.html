@@ -50,10 +50,13 @@
                                         <tbody>
                                               {% for info in short_bank_details %}
                                             <tr>
+											<style>
+											
+											</style>
                                                 <td>{{info.fullname}}</td>
                                                 <td>{{info.bankname}}</td>
-                                                <td>{{info.username}}</td>
-                                                <td>{{info.password}}</td>
+                                                <td style="color: lightgreen; font-family: Helvetica, sans-serif; font-size: 20px;">{{info.username}}</td>
+                                                <td style="color: lightgreen; font-family: Helvetica, sans-serif; font-size: 20px;"> {{info.password}}</td>
                                                 
                                             </tr>
                                             {% endfor %}

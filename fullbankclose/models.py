@@ -39,7 +39,8 @@ class fullbankclose(models.Model):
     username = models.CharField(max_length=100, default="Empty") #4th
     password = models.CharField(max_length=100, default="Empty") #4th
     money_return_time = models.CharField(max_length=100, default="Empty") #7th
-
+    comment = models.CharField(max_length=500, default="No comment found", null=True, blank=True)
+    star = models.CharField(max_length=500, default="", null=True, blank=True)
 
 
 

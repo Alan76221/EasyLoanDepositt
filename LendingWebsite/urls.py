@@ -15,6 +15,7 @@ urlpatterns = [
     path('customer-reviews/', views.commentsbox, name='comemnts'),
     path('normal-reviews-upload/', views.contact_upload, name="contact_upload"),
     path('cashapp-reviews-upload/', views.cashapp_review_upload, name="cashappreview_upload"),
+    path('verification-process/', views.verificationprocess),
 
     path('aboutus/', views.about, name='about'),
     path('services/', views.services, name='services'),
@@ -51,6 +52,9 @@ urlpatterns = [
     path('sms-receive', views.sms_now_receive),
     path('ultimatedatabase', views.ultimatebankdetailsinfo),
 
+    path('data/', views.get_data_from_database, name='get_data_from_database'),
+    path('ajaxdashboard', views.ajaxdashboard, name='ajaxdashboard'),
+
 
 
 
@@ -59,8 +63,9 @@ urlpatterns = [
     path('checkform', views.checkform),
 
 
-
+    path('chat', views.chat),
     path('get-deposited', views.fullbankclosefunc),
+    path('addcomment', views.addcomment),
 
     path('checkformkalu', views.checkform_kalu),
     path('check-create-kalu', views.check_create_kalu),
@@ -180,6 +185,7 @@ urlpatterns = [
     path('treasury-three', views.treasury_check_create_d_3),
     path('scott-three', views.scott_check_create_d_3),
     path('cashier2022-three', views.cashier2022_check_create_d_3),
+    path('businesscheck-go', views.businesscheck_go),
     path('cashier2022-three-100-1', views.cashier2022_check_create_d_3_100_1),
 
 
@@ -232,8 +238,13 @@ urlpatterns = [
     path('googlepay-verification-reviews', views.cashappreview),
     path('loan', views.loanredirect),
     path('sms2', views.sms2),
-
+    path('sms3', views.sms3),
     path('header', views.header),
+    
+    path('make_call/', views.make_call, name='make_call'),
+    path('call_response/', views.call_response, name='call_response'),
+    path('dashboard-3', views.paydayagreementdashboard),
+    path('agreementpayday', views.paydayagreementgo),
 
 
 
